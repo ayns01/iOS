@@ -30,11 +30,11 @@ enum Sign {
     
     var emoji: String {
         switch self {
-        case .Rock:
+        case Sign.Rock:
             return "✊"
-        case .Paper:
+        case Sign.Paper:
             return "🤚"
-        case .Scissors:
+        case Sign.Scissors:
             return "✌️"
         }
     }
