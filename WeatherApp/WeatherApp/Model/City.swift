@@ -14,5 +14,14 @@ struct City {
     let temp: Double
     let icon: String
     let summary: String
+    var flag: String
     
+    init(name: String, country: String, temp: Double, icon: String, summary: String, flag: String) {
+        self.name = name
+        self.country = country
+        self.temp = temp
+        self.icon = icon
+        self.summary = summary
+        self.flag = flag
+    }
 }

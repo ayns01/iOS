@@ -14,6 +14,17 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        if let detailsView = Bundle.main.loadNibNamed("DetailsView", owner: self, options: nil)?.first as? DetailsView {
+            
+            view.addSubview(detailsView)
+            detailsView.setupView(city: city)
+            NSLayoutConstraint.activate([
+                detailsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                detailsView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+                ])
+        }
     }
 }
 

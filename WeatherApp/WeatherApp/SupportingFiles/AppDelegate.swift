@@ -12,47 +12,36 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let vancouver = City(name: "Vancouver", country: "Canada", temp: 15.5, icon: "canada", summary: "🌧")
-        let tokyo = City(name: "Tokyo", country: "Japan", temp: 23.5, icon: "japan", summary: "⛅️")
-        let sao = City(name: "SaoPaulo", country: "Brazil", temp: 27, icon: "brazil", summary: "☀️")
-        let madrid = City(name: "Madrid", country: "Spain", temp: 20, icon: "italy", summary: "🌦")
-
+        let vancouver = City(name: "Vancouver", country: "Canada", temp: 15.5, icon: "canada", summary: "Sunny", flag: "🇨🇦")
+        let tokyo = City(name: "Tokyo", country: "Japan", temp: 23, icon: "japan", summary: "Hot", flag: "🇯🇵")
+        let sao = City(name: "São Paulo", country: "Brazil", temp: 25, icon: "brazil", summary: "Hot", flag: "🇧🇷")
+        let madrid = City(name: "Madrid", country: "Spain", temp: 30, icon: "skorea", summary: "Rainy", flag: "🇪🇸")
+        
         let vanVC = CityViewController()
         vanVC.city = vancouver
-        vanVC.view.backgroundColor = .orange
-//        vanVC.tabBarItem = UITabBarItem(title: vancouver.name, image: nil, selectedImage: nil)
         
-        let tokyoVC = CityViewController()
-        tokyoVC.city = tokyo
-        tokyoVC.view.backgroundColor = .green
-//        tokyoVC.tabBarItem = UITabBarItem(title: tokyo.name, image: nil, selectedImage: nil)
-
+        let tokVC = CityViewController()
+        tokVC.city = tokyo
+        
         let saoVC = CityViewController()
         saoVC.city = sao
-        saoVC.view.backgroundColor = .blue
-//        saoVC.tabBarItem = UITabBarItem(title: sao.name, image: nil, selectedImage: nil)
-
-        let madridVC = CityViewController()
-        madridVC.city = madrid
-        madridVC.view.backgroundColor = .red
-//        madridVC.tabBarItem = UITabBarItem(title: madrid.name, image: nil, selectedImage: nil)
+        
+        let madVC = CityViewController()
+        madVC.city = madrid
         
         let tabVC = UITabBarController()
         window?.rootViewController = tabVC
         
-        let citiesVC = [vanVC, tokyoVC, saoVC, madridVC]
+        let citiesVC = [vanVC, tokVC, saoVC, madVC]
         
         tabVC.viewControllers = citiesVC.map { UINavigationController(rootViewController: $0) }
         
         window?.makeKeyAndVisible()
-        
-        
         return true
     }
 

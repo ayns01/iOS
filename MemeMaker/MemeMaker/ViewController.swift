@@ -62,6 +62,5 @@ class ViewController: UIViewController {
         topCaptionLabel.text = topChoices[topCaptionSegmentedControl.selectedSegmentIndex].caption
         bottomCaptionLabel.text = bottomChoises[bottomCaptionSegmentedControl.selectedSegmentIndex].caption
     }
-    
-    
+
 }
