@@ -36,14 +36,20 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" keyboardAppearance="alert"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tip Amount " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2MN-gb-LMf">
+                                        <rect key="frame" x="157.5" y="214" width="99.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" keyboardAppearance="alert"/>
+                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Z4-0p-J3w">
-                                        <rect key="frame" x="183" y="214" width="48" height="24"/>
+                                        <rect key="frame" x="183" y="305" width="48" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-aW-jch">
-                                        <rect key="frame" x="108" y="299" width="198" height="31"/>
+                                        <rect key="frame" x="108" y="390" width="198" height="31"/>
                                         <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="maximumTrackTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="thumbTintColor" red="0.76080796630000003" green="0.60406752730000002" blue="0.75379733169999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -51,15 +57,6 @@
                                             <action selector="sliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="NPd-tE-PBo"/>
                                         </connections>
                                     </slider>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tip Percentage" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rG8-Le-aAe">
-                                        <rect key="frame" x="147.5" y="390" width="119" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" keyboardAppearance="alert"/>
-                                        <connections>
-                                            <action selector="tapTipAmountLabel:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="A57-2f-bnA"/>
-                                        </connections>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLl-iZ-atR">
                                         <rect key="frame" x="150" y="481" width="114" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -89,7 +86,7 @@
                         <outlet property="billAmountTextField" destination="03a-Sc-q3a" id="VRJ-TJ-k8b"/>
                         <outlet property="calulateButt" destination="dLl-iZ-atR" id="tYG-Ni-05c"/>
                         <outlet property="tipAmountLabel" destination="6Z4-0p-J3w" id="ZBP-0X-Rwl"/>
-                        <outlet property="tipPercentageTextField" destination="rG8-Le-aAe" id="PXI-Rv-XLd"/>
+                        <outlet property="tipPercentageTextField" destination="2MN-gb-LMf" id="Fz4-zW-5Be"/>
                         <outlet property="totalAmountLabel" destination="3sK-bQ-cVq" id="omJ-3Z-fr7"/>
                     </connections>
                 </viewController>

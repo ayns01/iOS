@@ -15,20 +15,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
             billAmountTextField.delegate = self
         }
     }
-    
     @IBOutlet weak var totalAmountLabel: UILabel!
-    
     @IBOutlet weak var tipAmountLabel: UILabel!
+    @IBOutlet weak var calulateButt: UIButton!
+    @IBOutlet weak var adjustTipPercentage: UISlider!
     
     @IBOutlet weak var tipPercentageTextField: UITextField! {
         didSet {
             tipPercentageTextField.delegate = self
         }
     }
-    
-    @IBOutlet weak var calulateButt: UIButton!
-    
-    @IBOutlet weak var adjustTipPercentage: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,10 +73,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let tipShouldPay = billResult + billResult * (tipResult * 0.01)
         
         totalAmountLabel.text = String(tipShouldPay)
-        
-    }
-    
-    @IBAction func tapTipAmountLabel(_ sender: UITextField) {
         
     }
     
