@@ -10,8 +10,10 @@ import UIKit
 
 protocol AddTodoViewControllerDelegate: class {
     func addTodoDidCancel()
-    func addTodoDidFinish(_ todo: String)
+    func addTodoDidFinish(_ todo: TodoOption)
 }
+
+var todoPrior: String!
 
 class AddTodoViewController: UIViewController {
     
@@ -46,13 +48,14 @@ class AddTodoViewController: UIViewController {
         setupUI()
         navigationItem.title = "Add Todo"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didAddTodo))
-        
+        todoPrior = "high"
     }
     
     @objc fileprivate func didAddTodo() {
         // Delegate !!
         if let todo = todoTextField.text { // Unwrap
-            delegate?.addTodoDidFinish(todo)
+            let todoOption = TodoOption(title: todo, priority: todoPrior)
+            delegate?.addTodoDidFinish(todoOption)
             navigationController?.popViewController(animated: true)
         }
         
@@ -63,11 +66,13 @@ class AddTodoViewController: UIViewController {
         switch sender.selectedSegmentIndex{
             case 0:
                 print("high")
-                
+                todoPrior = "high"
             case 1:
                 print("middle")
+                todoPrior = "middle"
             case 2:
                 print("low")
+                todoPrior = "low"
             default:
                 break
         }

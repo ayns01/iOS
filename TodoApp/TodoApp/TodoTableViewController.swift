@@ -12,10 +12,9 @@ import UIKit
 class TodoTableViewController: UITableViewController{
     
     // MARK: - properties
-    private var todos:[String] = [String]()
+    private var todos:[TodoOption] = [TodoOption]()
     
     // MARK: - Constants
-    
     
     private let cellId = "todoCell"
     
@@ -73,7 +72,7 @@ class TodoTableViewController: UITableViewController{
         // For each cell ?
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TodoTableViewCell
         
-        cell.todoName.text = todos[indexPath.row]
+        cell.todoName.text = todos[indexPath.row].title
         
         cell.accessoryType = .detailDisclosureButton
         
@@ -114,9 +113,11 @@ extension TodoTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let todo = todos[indexPath.row]// Unwrap
+        let todoTitle = todos[indexPath.row].title
+        let todoPrior = todos[indexPath.row].priority
         let detailVC = DetailViewController()
-        detailVC.todo = todo
+        detailVC.todoTitle = todoTitle
+        detailVC.todoPriority = todoPrior
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -126,7 +127,7 @@ extension TodoTableViewController: AddTodoViewControllerDelegate {
         
     }
     
-    func addTodoDidFinish(_ todo: String) {
+    func addTodoDidFinish(_ todo: TodoOption) {
         todos.append(todo)
         tableView.reloadData() // Refresh!
     }
