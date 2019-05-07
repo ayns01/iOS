@@ -7,18 +7,45 @@
 //
 
 import UIKit
+import SDWebImage
+
 // UICollectionViewDataSource Delegate
-class SearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class SearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     fileprivate let cellId = "resultCell"
+    fileprivate var searchResults = [ResultApp]()
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
+        
         collectionView.register(SearchCollectionViewCell.self,
                                 forCellWithReuseIdentifier: cellId)
         
-        fetchSearchResultApps()
+        setupSearchBar()
+    }
+    
+    fileprivate func setupSearchBar() {
+        navigationItem.searchController = self.searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.delegate = self
+    }
+    
+    var timer: Timer?
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            NetworkService.shared.fetchSearchResultApps(srarchTerm: searchText) { (results, err) in self.searchResults = results
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+                
+            }
+        })
         
     }
     
@@ -31,13 +58,28 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     // MARK: DataSource
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return searchResults.count
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // downCasting: UICollectionViewCell -> SearchCollectionViewCell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchCollectionViewCell
+        
+        cell.nameLabel.text = searchResults[indexPath.row].trackName
+        cell.categoryLabel.text = searchResults[indexPath.row].primaryGenreName
+        cell.categoryLabel.text = "\(searchResults[indexPath.row].averageUserRating ?? 0)"
+        let iconUrl = URL(string: searchResults[indexPath.row].artworkUrl100)
+        cell.iconImageView.sd_setImage(with: iconUrl)
+
+        cell.screenShot1.sd_setImage(with: URL(string: searchResults[indexPath.row].screenshotUrls[0]))
+        
+        cell.screenShot2.sd_setImage(with: URL(string: searchResults[indexPath.row].screenshotUrls[1]))
+        
+        cell.screenShot3.sd_setImage(with: URL(string: searchResults[indexPath.row].screenshotUrls[2]))
+        
+        
+        
         return cell
     }
     
@@ -49,33 +91,6 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    fileprivate func fetchSearchResultApps() {
-        // 1. url
-        let urlStr = "https://itunes.apple.com/search?term=facebook&entity=software"
-        guard let url = URL(string: urlStr) else { return }
-        // 2. send a request
-        URLSession.shared.dataTask(with: url) {(data, response, error ) in
-            
-            if let err = error {
-                print("Failed to fetch apps", err)
-                return
-            }
-            
-            guard let data = data else { return }
-            do {
-                // 3. parse response
-                let searchResult = try
-                    JSONDecoder().decode(SearchResultApp.self, from: data)
-                searchResult.results.forEach({ (result) in
-                    print(result.trackName, result.primaryGenreName)
-                })
-            } catch let jsonError {
-                print("Failed to decode jSon", jsonError)
-            }
-        }.resume() // fires!
-        
     }
     
 }

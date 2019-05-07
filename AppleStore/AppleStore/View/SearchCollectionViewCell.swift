@@ -12,11 +12,10 @@ class SearchCollectionViewCell: UICollectionViewCell {
     let iconImageView: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .blue
-        iv.layer.cornerRadius = 12
         iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
         iv.heightAnchor.constraint(equalToConstant: 64).isActive = true
-        
-        
+        iv.layer.cornerRadius = 12
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -59,6 +58,10 @@ class SearchCollectionViewCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.backgroundColor = .green
         iv.layer.cornerRadius = 7
+        iv.clipsToBounds = true
+        iv.layer.borderWidth = 0.5
+        iv.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+        iv.contentMode = .scaleAspectFill
         return iv
     }
     
@@ -86,21 +89,9 @@ class SearchCollectionViewCell: UICollectionViewCell {
             appInfoStackView, screenShotsStackView
             ])
         wholeStackView.axis = .vertical
-        wholeStackView.spacing = 16
-        
         addSubview(wholeStackView)
-        
-        
-        // set constraints
-//        wholeStackView.translatesAutoresizingMaskIntoConstraints = false
-        wholeStackView.matchParent(padding: .init(top: 16, left: 16, bottom: -16, right: -16))
-
-//        NSLayoutConstraint.activate([
-//            wholeStackView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-//            wholeStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
-//            wholeStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-//            wholeStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-//            ])
+        wholeStackView.spacing = 16
+        wholeStackView.matchParent(padding: UIEdgeInsets.init(top: 16, left: 16, bottom: 16, right: 16))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -108,21 +99,3 @@ class SearchCollectionViewCell: UICollectionViewCell {
     }
 
 }
-
-//extension UIView {
-//    func matchParent(padding: UIEdgeInsets = .zero) {
-//        translatesAutoresizingMaskIntoConstraints = false
-//        if let superTopAnchor = superview?.topAnchor {
-//            self.topAnchor.constraint(equalTo: superTopAnchor, constant: padding.top).isActive = true
-//        }
-//        if let superBottomAnchor = superview?.bottomAnchor {
-//            self.bottomAnchor.constraint(equalTo: superBottomAnchor, constant: -padding.bottom).isActive = true
-//        }
-//        if let superLeadingAnchor = superview?.leadingAnchor {
-//            self.leadingAnchor.constraint(equalTo: superLeadingAnchor, constant: padding.left).isActive = true
-//        }
-//        if let superTrailingAnchor = superview?.trailingAnchor {
-//            self.trailingAnchor.constraint(equalTo: superTrailingAnchor, constant: -padding.right).isActive = true
-//        }
-//    }
-//}
