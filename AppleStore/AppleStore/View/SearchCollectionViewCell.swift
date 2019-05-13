@@ -40,7 +40,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
     let getButt: UIButton = {
         let butt = UIButton(type: .system)
         butt.setTitle("GET", for: .normal)
-        butt.setTitleColor(.blue, for: .normal)
+        butt.setTitleColor(.darkGray, for: .normal)
         butt.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         butt.backgroundColor = UIColor(white: 0.95, alpha: 1)
         butt.widthAnchor.constraint(equalToConstant: 80).isActive = true

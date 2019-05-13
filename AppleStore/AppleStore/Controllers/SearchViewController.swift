@@ -9,12 +9,22 @@
 import UIKit
 import SDWebImage
 
-// UICollectionViewDataSource Delegate
+enum SearchState {
+    case trending
+    case suggestion
+    case final
+}
+
+// Trending page
 class SearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
-    fileprivate let cellId = "resultCell"
     fileprivate var searchResults = [ResultApp]()
     fileprivate let searchController = UISearchController(searchResultsController: nil)
+    private var searchState: SearchState = .trending
+    private var timer: Timer?
+    
+    private let cellId = "trendingCell"
+    private let trendings = ["Instagram", "facebook", "Tinder", "Snapchat", "Google"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +42,6 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         searchController.searchBar.delegate = self
     }
     
-    var timer: Timer?
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         

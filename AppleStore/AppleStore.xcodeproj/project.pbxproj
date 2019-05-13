@@ -11,6 +11,10 @@
 		B136BECE2277B7A100C4C545 /* UIView+constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BECD2277B7A100C4C545 /* UIView+constraint.swift */; };
 		B136BED32277BC3B00C4C545 /* SearchResultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BED22277BC3B00C4C545 /* SearchResultApp.swift */; };
 		B136BF462280DE1000C4C545 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BF452280DE1000C4C545 /* NetworkService.swift */; };
+		B14863F722838D7400937E31 /* UIViewController+ChildViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14863F622838D7400937E31 /* UIViewController+ChildViewControllers.swift */; };
+		B14863FA228390D800937E31 /* SearchResultsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14863F9228390D800937E31 /* SearchResultsContainerViewController.swift */; };
+		B14863FC2283916400937E31 /* SearchSuggestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14863FB2283916400937E31 /* SearchSuggestionTableViewController.swift */; };
+		B14863FE228391B500937E31 /* SearchFinalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14863FD228391B500937E31 /* SearchFinalCollectionViewController.swift */; };
 		B1BB1F6122725E6B00266225 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB1F6022725E6B00266225 /* AppDelegate.swift */; };
 		B1BB1F6622725E6B00266225 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BB1F6422725E6B00266225 /* Main.storyboard */; };
 		B1BB1F6822725E6E00266225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1BB1F6722725E6E00266225 /* Assets.xcassets */; };
@@ -27,6 +31,10 @@
 		B136BECD2277B7A100C4C545 /* UIView+constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+constraint.swift"; sourceTree = "<group>"; };
 		B136BED22277BC3B00C4C545 /* SearchResultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultApp.swift; sourceTree = "<group>"; };
 		B136BF452280DE1000C4C545 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B14863F622838D7400937E31 /* UIViewController+ChildViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewControllers.swift"; sourceTree = "<group>"; };
+		B14863F9228390D800937E31 /* SearchResultsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsContainerViewController.swift; sourceTree = "<group>"; };
+		B14863FB2283916400937E31 /* SearchSuggestionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionTableViewController.swift; sourceTree = "<group>"; };
+		B14863FD228391B500937E31 /* SearchFinalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFinalCollectionViewController.swift; sourceTree = "<group>"; };
 		B1BB1F5D22725E6B00266225 /* AppleStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BB1F6022725E6B00266225 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1BB1F6522725E6B00266225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,6 +106,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		B14863F822838D8A00937E31 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B14863F622838D7400937E31 /* UIViewController+ChildViewControllers.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		B1BB1F5422725E6B00266225 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +141,7 @@
 				B136BEC922779AE300C4C545 /* View */,
 				B1BB1F762272686D00266225 /* Controllers */,
 				B1BB1F6C22725E6E00266225 /* Info.plist */,
+				B14863F822838D8A00937E31 /* Extension */,
 			);
 			path = AppleStore;
 			sourceTree = "<group>";
@@ -132,8 +149,11 @@
 		B1BB1F762272686D00266225 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B1BB1F742272685B00266225 /* SearchViewController.swift */,
 				B1BB1F7222725F0E00266225 /* MainTabBarController.swift */,
+				B1BB1F742272685B00266225 /* SearchViewController.swift */,
+				B14863F9228390D800937E31 /* SearchResultsContainerViewController.swift */,
+				B14863FB2283916400937E31 /* SearchSuggestionTableViewController.swift */,
+				B14863FD228391B500937E31 /* SearchFinalCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -271,12 +291,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B14863FA228390D800937E31 /* SearchResultsContainerViewController.swift in Sources */,
 				B1BB1F6122725E6B00266225 /* AppDelegate.swift in Sources */,
 				B136BECE2277B7A100C4C545 /* UIView+constraint.swift in Sources */,
+				B14863FC2283916400937E31 /* SearchSuggestionTableViewController.swift in Sources */,
 				B1BB1F752272685B00266225 /* SearchViewController.swift in Sources */,
 				B136BECC22779B2300C4C545 /* SearchCollectionViewCell.swift in Sources */,
+				B14863F722838D7400937E31 /* UIViewController+ChildViewControllers.swift in Sources */,
 				B136BED32277BC3B00C4C545 /* SearchResultApp.swift in Sources */,
 				B1BB1F7322725F0E00266225 /* MainTabBarController.swift in Sources */,
+				B14863FE228391B500937E31 /* SearchFinalCollectionViewController.swift in Sources */,
 				B136BF462280DE1000C4C545 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

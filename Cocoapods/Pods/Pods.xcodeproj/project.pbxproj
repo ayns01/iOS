@@ -1,0 +1,671 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03593132B6360419A041A4B88F626FC6 /* DotPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43422AF4D2BF75CBF53EAA75AD65C9E /* DotPlot.swift */; };
+		0E73D219C6A2A23DB49F48392F5A35BE /* ScrollableGraphViewDrawingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689E00DACC37CD9E7A39A66E22732148 /* ScrollableGraphViewDrawingDelegate.swift */; };
+		2240708D36C09EE299E247C6C094E84E /* ScrollableGraphView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4C2FF40AADEB14ADE7605C5D3D2789 /* ScrollableGraphView-dummy.m */; };
+		2CB00925F7CC3F164243B60BDE4965EF /* ScrollableGraphViewDrawingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AED05C9C41DEA5800533039501E4BF1 /* ScrollableGraphViewDrawingLayer.swift */; };
+		317255C13F4359A374EB94B82BF8CC09 /* LabelPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD90924AA5D3480EC11E079358D16CB /* LabelPool.swift */; };
+		3C0B2DD84B2595165C1C4330D6C1EEF2 /* DotDrawingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8BE018CEA0A038416B2CD4EB985BA3 /* DotDrawingLayer.swift */; };
+		5089ECE77E8006C9A8B39C0472112629 /* Pods-CocoaPods-Test-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03572ABECF6EBF7CEDA577A953519432 /* Pods-CocoaPods-Test-dummy.m */; };
+		5362D5F5315B3500C5238E494A3CC5FD /* Pods-CocoaPods-Test-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 82EE0ACDAA8A61E4A5E9788CE87943B8 /* Pods-CocoaPods-Test-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E058E411A0C97FBEFC3FA5B1FE52E9A /* LineDrawingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C57364F253E54090C3A9211BD30C6C /* LineDrawingLayer.swift */; };
+		6A867DCC2391E53E7209599B1C792E3B /* GradientDrawingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E4DDF9D105898D6BECE853A5FC8A6F /* GradientDrawingLayer.swift */; };
+		6DC0D27D1F20CA6FEE51AD884C83FC93 /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97CDB13C3D1F57673E37C9BA1AFA894 /* Plot.swift */; };
+		70279A13AF6FA4D27A6CA42B356B65C7 /* ScrollableGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45D4F6954DA2001918A0524BF67F093 /* ScrollableGraphView.swift */; };
+		85B23AD31FBDF56F88BFE3ED027C47BB /* LinePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FEC518075CB89E789B5BD9625D6875 /* LinePlot.swift */; };
+		8D17F89F431C601DA2B94CC8DAB4DA4E /* ScrollableGraphViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ADEF46AF1DE672DA482D68BD7EE238 /* ScrollableGraphViewDataSource.swift */; };
+		92A9F58CDE1C06880DA9B3AAAF897D66 /* BarPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2662546E6C603EAA73510D4094779 /* BarPlot.swift */; };
+		92F6A28C264D4A65A8AEFC80A5E38F1A /* ReferenceLineDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70638F453B83437EB54DD0685AD73EFC /* ReferenceLineDrawingView.swift */; };
+		98A0D89904C2EE7EC10D7E6F6D7F1CEF /* FillDrawingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8BD39E86CB2CEE11A6E40CCE4FB3F /* FillDrawingLayer.swift */; };
+		A585BC15456CC1BF79E6D166774EE827 /* BarDrawingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3605AB30E76FE939E03A71F0397127FB /* BarDrawingLayer.swift */; };
+		A697AC5C557CDF7D60E30317E3224E47 /* GraphPointAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C775757921EFBC4185D88D8E951B4F /* GraphPointAnimation.swift */; };
+		AACAA9831D142E326297C94F59A827F0 /* ReferenceLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751EEF44A6CF2EFD45DDCD76FEC5117 /* ReferenceLines.swift */; };
+		B5A4C16B947C0EA15654D5470F7A844C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		D6DAF8C36EC138899174F4B0B00E4EF2 /* ScrollableGraphView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F7BD1A47585BEA5EE0058E5E7E646AC /* ScrollableGraphView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F67F778DE3DB118BE7F89E39B7E5868F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		FDA362D75475FB3D422F890FCF7CF98E /* GraphPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A51B1AD480AF7CE61479241E4B22CB2 /* GraphPoint.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF93FFD8A43068AFC1D6AE2C02F4F8D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE8101130728A6FD72E8C38DE1E55678;
+			remoteInfo = ScrollableGraphView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03572ABECF6EBF7CEDA577A953519432 /* Pods-CocoaPods-Test-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CocoaPods-Test-dummy.m"; sourceTree = "<group>"; };
+		07544AFB2766EC8BD8AE9E27059F517B /* ScrollableGraphView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ScrollableGraphView-Info.plist"; sourceTree = "<group>"; };
+		0A51B1AD480AF7CE61479241E4B22CB2 /* GraphPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphPoint.swift; path = Classes/Plots/Animation/GraphPoint.swift; sourceTree = "<group>"; };
+		0F4C2FF40AADEB14ADE7605C5D3D2789 /* ScrollableGraphView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ScrollableGraphView-dummy.m"; sourceTree = "<group>"; };
+		149A71285968214BEBF041DFEB5F6182 /* Pods-CocoaPods-Test-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CocoaPods-Test-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2751EEF44A6CF2EFD45DDCD76FEC5117 /* ReferenceLines.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReferenceLines.swift; path = Classes/Reference/ReferenceLines.swift; sourceTree = "<group>"; };
+		2EFDC8D01F213A429F5C445D7F7FCF6B /* ScrollableGraphView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ScrollableGraphView.framework; path = ScrollableGraphView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3605AB30E76FE939E03A71F0397127FB /* BarDrawingLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarDrawingLayer.swift; path = Classes/Drawing/BarDrawingLayer.swift; sourceTree = "<group>"; };
+		36ADEF46AF1DE672DA482D68BD7EE238 /* ScrollableGraphViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScrollableGraphViewDataSource.swift; path = Classes/Protocols/ScrollableGraphViewDataSource.swift; sourceTree = "<group>"; };
+		3DE8AF956F55A1659AB51F04E777BF11 /* Pods-CocoaPods-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CocoaPods-Test.debug.xcconfig"; sourceTree = "<group>"; };
+		3EC56F470E088C5D5AB43198CC2A71B9 /* ScrollableGraphView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScrollableGraphView-prefix.pch"; sourceTree = "<group>"; };
+		43A465589DB9FEA0E5FBAEB5594B7251 /* Pods-CocoaPods-Test.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CocoaPods-Test.modulemap"; sourceTree = "<group>"; };
+		48A8BD39E86CB2CEE11A6E40CCE4FB3F /* FillDrawingLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FillDrawingLayer.swift; path = Classes/Drawing/FillDrawingLayer.swift; sourceTree = "<group>"; };
+		4AD90924AA5D3480EC11E079358D16CB /* LabelPool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LabelPool.swift; path = Classes/Reference/LabelPool.swift; sourceTree = "<group>"; };
+		4AED05C9C41DEA5800533039501E4BF1 /* ScrollableGraphViewDrawingLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScrollableGraphViewDrawingLayer.swift; path = Classes/Drawing/ScrollableGraphViewDrawingLayer.swift; sourceTree = "<group>"; };
+		4F7BD1A47585BEA5EE0058E5E7E646AC /* ScrollableGraphView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ScrollableGraphView-umbrella.h"; sourceTree = "<group>"; };
+		4FDA3251D244026AAF332B00A7183558 /* ScrollableGraphView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScrollableGraphView.xcconfig; sourceTree = "<group>"; };
+		61FEC518075CB89E789B5BD9625D6875 /* LinePlot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LinePlot.swift; path = Classes/Plots/LinePlot.swift; sourceTree = "<group>"; };
+		689E00DACC37CD9E7A39A66E22732148 /* ScrollableGraphViewDrawingDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScrollableGraphViewDrawingDelegate.swift; path = Classes/Protocols/ScrollableGraphViewDrawingDelegate.swift; sourceTree = "<group>"; };
+		70638F453B83437EB54DD0685AD73EFC /* ReferenceLineDrawingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReferenceLineDrawingView.swift; path = Classes/Drawing/ReferenceLineDrawingView.swift; sourceTree = "<group>"; };
+		73C2662546E6C603EAA73510D4094779 /* BarPlot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarPlot.swift; path = Classes/Plots/BarPlot.swift; sourceTree = "<group>"; };
+		756FE2D65533FDE2754706CA2CE9A8A6 /* Pods_CocoaPods_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CocoaPods_Test.framework; path = "Pods-CocoaPods-Test.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A4047786E752243E9B0EF48231BA691 /* Pods-CocoaPods-Test-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CocoaPods-Test-acknowledgements.plist"; sourceTree = "<group>"; };
+		7A8BE018CEA0A038416B2CD4EB985BA3 /* DotDrawingLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DotDrawingLayer.swift; path = Classes/Drawing/DotDrawingLayer.swift; sourceTree = "<group>"; };
+		82EE0ACDAA8A61E4A5E9788CE87943B8 /* Pods-CocoaPods-Test-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CocoaPods-Test-umbrella.h"; sourceTree = "<group>"; };
+		88BAA3709DF30A9AAA2F767D53DEA81F /* Pods-CocoaPods-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CocoaPods-Test.release.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A45D4F6954DA2001918A0524BF67F093 /* ScrollableGraphView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScrollableGraphView.swift; path = Classes/ScrollableGraphView.swift; sourceTree = "<group>"; };
+		A97CDB13C3D1F57673E37C9BA1AFA894 /* Plot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Plot.swift; path = Classes/Plots/Plot.swift; sourceTree = "<group>"; };
+		B1C775757921EFBC4185D88D8E951B4F /* GraphPointAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphPointAnimation.swift; path = Classes/Plots/Animation/GraphPointAnimation.swift; sourceTree = "<group>"; };
+		D3C57364F253E54090C3A9211BD30C6C /* LineDrawingLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineDrawingLayer.swift; path = Classes/Drawing/LineDrawingLayer.swift; sourceTree = "<group>"; };
+		D43422AF4D2BF75CBF53EAA75AD65C9E /* DotPlot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DotPlot.swift; path = Classes/Plots/DotPlot.swift; sourceTree = "<group>"; };
+		D7363D97A154247E856068268B01A97D /* ScrollableGraphView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ScrollableGraphView.modulemap; sourceTree = "<group>"; };
+		DC91EC36E4F6CD030D2A625AE51048DA /* Pods-CocoaPods-Test-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CocoaPods-Test-frameworks.sh"; sourceTree = "<group>"; };
+		DF9A9BBB0A913637F2549FAC697ACEA9 /* Pods-CocoaPods-Test-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CocoaPods-Test-Info.plist"; sourceTree = "<group>"; };
+		F5E4DDF9D105898D6BECE853A5FC8A6F /* GradientDrawingLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GradientDrawingLayer.swift; path = Classes/Drawing/GradientDrawingLayer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5971E5EC87B58DE9550929BF86C74DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5A4C16B947C0EA15654D5470F7A844C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0102FC44FDAFC652F08315014B4C0F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F67F778DE3DB118BE7F89E39B7E5868F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F2D2317BE6D84297F484A9A0D210563 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				542CA459165B4496E192FBFC2706D143 /* Pods-CocoaPods-Test */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		542CA459165B4496E192FBFC2706D143 /* Pods-CocoaPods-Test */ = {
+			isa = PBXGroup;
+			children = (
+				43A465589DB9FEA0E5FBAEB5594B7251 /* Pods-CocoaPods-Test.modulemap */,
+				149A71285968214BEBF041DFEB5F6182 /* Pods-CocoaPods-Test-acknowledgements.markdown */,
+				7A4047786E752243E9B0EF48231BA691 /* Pods-CocoaPods-Test-acknowledgements.plist */,
+				03572ABECF6EBF7CEDA577A953519432 /* Pods-CocoaPods-Test-dummy.m */,
+				DC91EC36E4F6CD030D2A625AE51048DA /* Pods-CocoaPods-Test-frameworks.sh */,
+				DF9A9BBB0A913637F2549FAC697ACEA9 /* Pods-CocoaPods-Test-Info.plist */,
+				82EE0ACDAA8A61E4A5E9788CE87943B8 /* Pods-CocoaPods-Test-umbrella.h */,
+				3DE8AF956F55A1659AB51F04E777BF11 /* Pods-CocoaPods-Test.debug.xcconfig */,
+				88BAA3709DF30A9AAA2F767D53DEA81F /* Pods-CocoaPods-Test.release.xcconfig */,
+			);
+			name = "Pods-CocoaPods-Test";
+			path = "Target Support Files/Pods-CocoaPods-Test";
+			sourceTree = "<group>";
+		};
+		5E8ACD07440C845CEEB913D534072CDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				756FE2D65533FDE2754706CA2CE9A8A6 /* Pods_CocoaPods_Test.framework */,
+				2EFDC8D01F213A429F5C445D7F7FCF6B /* ScrollableGraphView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6FF6A39FC52F2C7BA9AD67617E61F812 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CA39FE15E359820C4E1E5B2BD86BB670 /* ScrollableGraphView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CA39FE15E359820C4E1E5B2BD86BB670 /* ScrollableGraphView */ = {
+			isa = PBXGroup;
+			children = (
+				3605AB30E76FE939E03A71F0397127FB /* BarDrawingLayer.swift */,
+				73C2662546E6C603EAA73510D4094779 /* BarPlot.swift */,
+				7A8BE018CEA0A038416B2CD4EB985BA3 /* DotDrawingLayer.swift */,
+				D43422AF4D2BF75CBF53EAA75AD65C9E /* DotPlot.swift */,
+				48A8BD39E86CB2CEE11A6E40CCE4FB3F /* FillDrawingLayer.swift */,
+				F5E4DDF9D105898D6BECE853A5FC8A6F /* GradientDrawingLayer.swift */,
+				0A51B1AD480AF7CE61479241E4B22CB2 /* GraphPoint.swift */,
+				B1C775757921EFBC4185D88D8E951B4F /* GraphPointAnimation.swift */,
+				4AD90924AA5D3480EC11E079358D16CB /* LabelPool.swift */,
+				D3C57364F253E54090C3A9211BD30C6C /* LineDrawingLayer.swift */,
+				61FEC518075CB89E789B5BD9625D6875 /* LinePlot.swift */,
+				A97CDB13C3D1F57673E37C9BA1AFA894 /* Plot.swift */,
+				70638F453B83437EB54DD0685AD73EFC /* ReferenceLineDrawingView.swift */,
+				2751EEF44A6CF2EFD45DDCD76FEC5117 /* ReferenceLines.swift */,
+				A45D4F6954DA2001918A0524BF67F093 /* ScrollableGraphView.swift */,
+				36ADEF46AF1DE672DA482D68BD7EE238 /* ScrollableGraphViewDataSource.swift */,
+				689E00DACC37CD9E7A39A66E22732148 /* ScrollableGraphViewDrawingDelegate.swift */,
+				4AED05C9C41DEA5800533039501E4BF1 /* ScrollableGraphViewDrawingLayer.swift */,
+				EF094853EA0C56C676D27D776C16142E /* Support Files */,
+			);
+			name = ScrollableGraphView;
+			path = ScrollableGraphView;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				6FF6A39FC52F2C7BA9AD67617E61F812 /* Pods */,
+				5E8ACD07440C845CEEB913D534072CDC /* Products */,
+				0F2D2317BE6D84297F484A9A0D210563 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF094853EA0C56C676D27D776C16142E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D7363D97A154247E856068268B01A97D /* ScrollableGraphView.modulemap */,
+				4FDA3251D244026AAF332B00A7183558 /* ScrollableGraphView.xcconfig */,
+				0F4C2FF40AADEB14ADE7605C5D3D2789 /* ScrollableGraphView-dummy.m */,
+				07544AFB2766EC8BD8AE9E27059F517B /* ScrollableGraphView-Info.plist */,
+				3EC56F470E088C5D5AB43198CC2A71B9 /* ScrollableGraphView-prefix.pch */,
+				4F7BD1A47585BEA5EE0058E5E7E646AC /* ScrollableGraphView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ScrollableGraphView";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7B7199C5E8E149CD96998697CBDDCBF1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5362D5F5315B3500C5238E494A3CC5FD /* Pods-CocoaPods-Test-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8BD7699A67978B8FF4691D5B308BF10 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6DAF8C36EC138899174F4B0B00E4EF2 /* ScrollableGraphView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		AC4F21D3B2500DB59E1DBEFF87D1FCAA /* Pods-CocoaPods-Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96A0510AF91060E3757CFD66524E8B22 /* Build configuration list for PBXNativeTarget "Pods-CocoaPods-Test" */;
+			buildPhases = (
+				7B7199C5E8E149CD96998697CBDDCBF1 /* Headers */,
+				8F21B8F64EB99927A04C5A69CAFC37DE /* Sources */,
+				F0102FC44FDAFC652F08315014B4C0F0 /* Frameworks */,
+				5B0C6CC752040957019C244947CF4B60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				685CEB896109A01FCF10A5DCD424E6BA /* PBXTargetDependency */,
+			);
+			name = "Pods-CocoaPods-Test";
+			productName = "Pods-CocoaPods-Test";
+			productReference = 756FE2D65533FDE2754706CA2CE9A8A6 /* Pods_CocoaPods_Test.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FE8101130728A6FD72E8C38DE1E55678 /* ScrollableGraphView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF3999C9E7A417D4FFA447D1BF8713DD /* Build configuration list for PBXNativeTarget "ScrollableGraphView" */;
+			buildPhases = (
+				B8BD7699A67978B8FF4691D5B308BF10 /* Headers */,
+				8BF5236E70A1335F1970A476DC089B6E /* Sources */,
+				B5971E5EC87B58DE9550929BF86C74DF /* Frameworks */,
+				42FC8C8770CE760C45B8E00407881AFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScrollableGraphView;
+			productName = ScrollableGraphView;
+			productReference = 2EFDC8D01F213A429F5C445D7F7FCF6B /* ScrollableGraphView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 5E8ACD07440C845CEEB913D534072CDC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC4F21D3B2500DB59E1DBEFF87D1FCAA /* Pods-CocoaPods-Test */,
+				FE8101130728A6FD72E8C38DE1E55678 /* ScrollableGraphView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		42FC8C8770CE760C45B8E00407881AFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B0C6CC752040957019C244947CF4B60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8BF5236E70A1335F1970A476DC089B6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A585BC15456CC1BF79E6D166774EE827 /* BarDrawingLayer.swift in Sources */,
+				92A9F58CDE1C06880DA9B3AAAF897D66 /* BarPlot.swift in Sources */,
+				3C0B2DD84B2595165C1C4330D6C1EEF2 /* DotDrawingLayer.swift in Sources */,
+				03593132B6360419A041A4B88F626FC6 /* DotPlot.swift in Sources */,
+				98A0D89904C2EE7EC10D7E6F6D7F1CEF /* FillDrawingLayer.swift in Sources */,
+				6A867DCC2391E53E7209599B1C792E3B /* GradientDrawingLayer.swift in Sources */,
+				FDA362D75475FB3D422F890FCF7CF98E /* GraphPoint.swift in Sources */,
+				A697AC5C557CDF7D60E30317E3224E47 /* GraphPointAnimation.swift in Sources */,
+				317255C13F4359A374EB94B82BF8CC09 /* LabelPool.swift in Sources */,
+				5E058E411A0C97FBEFC3FA5B1FE52E9A /* LineDrawingLayer.swift in Sources */,
+				85B23AD31FBDF56F88BFE3ED027C47BB /* LinePlot.swift in Sources */,
+				6DC0D27D1F20CA6FEE51AD884C83FC93 /* Plot.swift in Sources */,
+				92F6A28C264D4A65A8AEFC80A5E38F1A /* ReferenceLineDrawingView.swift in Sources */,
+				AACAA9831D142E326297C94F59A827F0 /* ReferenceLines.swift in Sources */,
+				2240708D36C09EE299E247C6C094E84E /* ScrollableGraphView-dummy.m in Sources */,
+				70279A13AF6FA4D27A6CA42B356B65C7 /* ScrollableGraphView.swift in Sources */,
+				8D17F89F431C601DA2B94CC8DAB4DA4E /* ScrollableGraphViewDataSource.swift in Sources */,
+				0E73D219C6A2A23DB49F48392F5A35BE /* ScrollableGraphViewDrawingDelegate.swift in Sources */,
+				2CB00925F7CC3F164243B60BDE4965EF /* ScrollableGraphViewDrawingLayer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F21B8F64EB99927A04C5A69CAFC37DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5089ECE77E8006C9A8B39C0472112629 /* Pods-CocoaPods-Test-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		685CEB896109A01FCF10A5DCD424E6BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ScrollableGraphView;
+			target = FE8101130728A6FD72E8C38DE1E55678 /* ScrollableGraphView */;
+			targetProxy = EF93FFD8A43068AFC1D6AE2C02F4F8D9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		204B8AEA4AE90A551A1768B355C2F9F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		38FD03FAD5AB8FD35ADAD23FD349511E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88BAA3709DF30A9AAA2F767D53DEA81F /* Pods-CocoaPods-Test.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CocoaPods-Test/Pods-CocoaPods-Test-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CocoaPods-Test/Pods-CocoaPods-Test.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3CCC6195EDBEE5DA2A49DF962113BE16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		4C38F114BC3BC6F1B002E7781F3F57C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DE8AF956F55A1659AB51F04E777BF11 /* Pods-CocoaPods-Test.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CocoaPods-Test/Pods-CocoaPods-Test-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CocoaPods-Test/Pods-CocoaPods-Test.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5E3ED4A986135B8B1219F3102FF0CE9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FDA3251D244026AAF332B00A7183558 /* ScrollableGraphView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ScrollableGraphView/ScrollableGraphView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ScrollableGraphView/ScrollableGraphView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ScrollableGraphView/ScrollableGraphView.modulemap";
+				PRODUCT_MODULE_NAME = ScrollableGraphView;
+				PRODUCT_NAME = ScrollableGraphView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B8A68EA15C678124B09DA4D88F661F54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FDA3251D244026AAF332B00A7183558 /* ScrollableGraphView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ScrollableGraphView/ScrollableGraphView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ScrollableGraphView/ScrollableGraphView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ScrollableGraphView/ScrollableGraphView.modulemap";
+				PRODUCT_MODULE_NAME = ScrollableGraphView;
+				PRODUCT_NAME = ScrollableGraphView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				204B8AEA4AE90A551A1768B355C2F9F0 /* Debug */,
+				3CCC6195EDBEE5DA2A49DF962113BE16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96A0510AF91060E3757CFD66524E8B22 /* Build configuration list for PBXNativeTarget "Pods-CocoaPods-Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C38F114BC3BC6F1B002E7781F3F57C7 /* Debug */,
+				38FD03FAD5AB8FD35ADAD23FD349511E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF3999C9E7A417D4FFA447D1BF8713DD /* Build configuration list for PBXNativeTarget "ScrollableGraphView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8A68EA15C678124B09DA4D88F661F54 /* Debug */,
+				5E3ED4A986135B8B1219F3102FF0CE9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
