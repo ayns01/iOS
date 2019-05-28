@@ -9,12 +9,6 @@
 import UIKit
 
 class TodoTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        // create from storyboard
-    }
     
     let todoName: UILabel = UILabel(title: "Todo", color: .blue, fontSize: 20, bold: true)
     
@@ -24,7 +18,6 @@ class TodoTableViewCell: UITableViewCell {
         addSubview(todoName)
         todoName.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         todoName.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-
     }
     
     required init?(coder aDecoder: NSCoder) {

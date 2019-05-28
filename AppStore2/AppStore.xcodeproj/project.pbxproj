@@ -25,6 +25,7 @@
 		4EBD97242278ED6200BD9F50 /* UIViewController+ChildViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD97232278ED6100BD9F50 /* UIViewController+ChildViewControllers.swift */; };
 		4EBD97262278FB5400BD9F50 /* SearchSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD97252278FB5400BD9F50 /* SearchSuggestionTableViewCell.swift */; };
 		4EBD9728227A0A5400BD9F50 /* TrendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD9727227A0A5400BD9F50 /* TrendingTableViewCell.swift */; };
+		B10D22EA229C81AB00C0F9BF /* FullScreenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D22E9229C81AB00C0F9BF /* FullScreenTableViewController.swift */; };
 		B14864822286159D00937E31 /* TodayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14864812286159D00937E31 /* TodayCollectionViewController.swift */; };
 		B148648522861D2700937E31 /* TodayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B148648422861D2700937E31 /* TodayCollectionViewCell.swift */; };
 		B1486488228638E100937E31 /* fullScreenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1486487228638E100937E31 /* fullScreenTableViewController.swift */; };
@@ -54,6 +55,7 @@
 		4EBD97232278ED6100BD9F50 /* UIViewController+ChildViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewControllers.swift"; sourceTree = "<group>"; };
 		4EBD97252278FB5400BD9F50 /* SearchSuggestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionTableViewCell.swift; sourceTree = "<group>"; };
 		4EBD9727227A0A5400BD9F50 /* TrendingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingTableViewCell.swift; sourceTree = "<group>"; };
+		B10D22E9229C81AB00C0F9BF /* FullScreenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenTableViewController.swift; sourceTree = "<group>"; };
 		B14864812286159D00937E31 /* TodayCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCollectionViewController.swift; sourceTree = "<group>"; };
 		B148648422861D2700937E31 /* TodayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1486487228638E100937E31 /* fullScreenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fullScreenTableViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				B148648422861D2700937E31 /* TodayCollectionViewCell.swift */,
+				B10D22E9229C81AB00C0F9BF /* FullScreenTableViewController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				4E272465227B716900CF126E /* UIColor+Colors.swift in Sources */,
 				4EBD97202278B52B00BD9F50 /* SearchFinalCollectionViewController.swift in Sources */,
 				B1486488228638E100937E31 /* fullScreenTableViewController.swift in Sources */,
+				B10D22EA229C81AB00C0F9BF /* FullScreenTableViewController.swift in Sources */,
 				4EBD9728227A0A5400BD9F50 /* TrendingTableViewCell.swift in Sources */,
 				4EBB797A2277BC3A007C976D /* SearchResultApp.swift in Sources */,
 				4EBB79772277B733007C976D /* UIView+ConstraintLayout.swift in Sources */,

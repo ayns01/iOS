@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AddTodoViewControllerDelegate: class {
     func addTodoDidCancel()
-    func addTodoDidFinish(_ todo: TodoOption)
+    func addTodoDidFinish(_ todo: TodoEntity)
 }
 
 var todoPrior: String!
@@ -19,8 +20,6 @@ class AddTodoViewController: UIViewController {
     
     weak var delegate: AddTodoViewControllerDelegate?
 
-    // To prepare...
-    
     // Text field
     let todoTextField: UITextField = {
         let tf = UITextField(frame: .zero)
@@ -29,7 +28,7 @@ class AddTodoViewController: UIViewController {
         return tf
     }()
     // Label
-    let descriptionLabel: UILabel = UILabel(title: "What do you have to do?😻", color: .black, fontSize: 20, bold: true)
+    let descriptionLabel: UILabel = UILabel(title: "What do you have to do?", color: .black, fontSize: 20, bold: true)
     // segmented control
     let segmentedControl: UISegmentedControl = {
         let items = ["high", "middle", "low"]
@@ -38,7 +37,6 @@ class AddTodoViewController: UIViewController {
         sc.layer.cornerRadius = 5.0
         sc.backgroundColor = UIColor.orange
         sc.tintColor = UIColor.yellow
-        sc.addTarget(self, action: #selector(segmentIndexChanged(_:)), for: .valueChanged)
         return sc
     }()
     
@@ -53,29 +51,18 @@ class AddTodoViewController: UIViewController {
     
     @objc fileprivate func didAddTodo() {
         // Delegate !!
-        if let todo = todoTextField.text { // Unwrap
-            let todoOption = TodoOption(title: todo, priority: todoPrior)
-            delegate?.addTodoDidFinish(todoOption)
+        if let todoText = todoTextField.text { // Unwrap
+            let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+            let newTodo = NSEntityDescription.insertNewObject(forEntityName: "TodoEntity", into: managedContext)
+            newTodo.setValue(todoText , forKey: "todoItem")
+            newTodo.setValue(1, forKey: "priority")
+            CoreDataManager.shared.saveContext()
+            
+            delegate?.addTodoDidFinish(newTodo as! TodoEntity)
             navigationController?.popViewController(animated: true)
         }
         
         
-    }
-    
-    @objc func segmentIndexChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex{
-            case 0:
-                print("high")
-                todoPrior = "high"
-            case 1:
-                print("middle")
-                todoPrior = "middle"
-            case 2:
-                print("low")
-                todoPrior = "low"
-            default:
-                break
-        }
     }
     
     fileprivate func setupUI() {
@@ -88,12 +75,6 @@ class AddTodoViewController: UIViewController {
         stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
         stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 20).isActive = true
-        
-        view.addSubview(segmentedControl)
-        segmentedControl.setWidth(70, forSegmentAt: 0)
-        segmentedControl.setWidth(70, forSegmentAt: 1)
-        segmentedControl.setWidth(70, forSegmentAt: 2)
-        segmentedControl.center = view.center
     }
 
 }

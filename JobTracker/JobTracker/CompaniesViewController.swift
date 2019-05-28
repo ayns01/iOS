@@ -27,7 +27,7 @@ class CompaniesViewController: UITableViewController, AddCompanyControllerDelega
         navigationItem.title = "Company List"
         tableView.separatorColor = .spaceGray
         tableView.tableFooterView = UIView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(CompanyTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         setupRightAddButton()
         fetchCompanies()
     }
@@ -87,19 +87,10 @@ class CompaniesViewController: UITableViewController, AddCompanyControllerDelega
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        let company = companies[indexPath.row]
-        cell.backgroundColor = .black
-        cell.textLabel?.textColor = .white
-        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        if let name = company.name, let applied = company.applied {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yy"
-            cell.textLabel?.text = "\(name) - Applied: \(dateFormatter.string(from: applied))"
-        }else {
-            cell.textLabel?.text = "\(company.name!)"
-        }
-    
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CompanyTableViewCell
+        
+        cell.company = companies[indexPath.row]
+//
         return cell
     }
     
@@ -137,7 +128,22 @@ class CompaniesViewController: UITableViewController, AddCompanyControllerDelega
         return [deleteAction, editAction]
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let descriptionLabel = UILabel()
+        descriptionLabel.text = "Start looking for a job..."
+        descriptionLabel.textColor = .white
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.font = .boldSystemFont(ofSize: 20)
+        return descriptionLabel
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return companies.count == 0 ? 200 : 0
+    }
 
 }
 

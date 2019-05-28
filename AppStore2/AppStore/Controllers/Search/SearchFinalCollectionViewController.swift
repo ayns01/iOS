@@ -42,15 +42,16 @@ class SearchFinalCollectionViewController: UICollectionViewController, UICollect
   // MARK: - Helper Methods
   
   func fetchSearchResultApps(searchTerm: String) {
-    APIService.shared.fetchSearchResultApps(searchTerm: searchTerm) { (results, err) in
-      if let err = err {
+    APIService.shared.fetchSearchResultApps(searchTerm: searchTerm) {
+        [weak self] (results, err) in
+        if let err = err {
         print("Failed to fetch apps: ", err)
         return
       }
       
-      self.searchResults = results
+        self?.searchResults = results
       DispatchQueue.main.async {
-        self.collectionView.reloadData()
+        self?.collectionView.reloadData()
       }
     }
   }

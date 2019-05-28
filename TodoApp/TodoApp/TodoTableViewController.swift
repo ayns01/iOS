@@ -7,12 +7,13 @@
 //
 
 import UIKit
-// delegate, datasource automatically conformed
+import CoreData
 
 class TodoTableViewController: UITableViewController{
-    
     // MARK: - properties
-    private var todos:[TodoOption] = [TodoOption]()
+    var highTodos = [TodoEntity]()
+    var midTodos = [TodoEntity]()
+    var lowTodos = [TodoEntity]()
     
     // MARK: - Constants
     
@@ -22,7 +23,6 @@ class TodoTableViewController: UITableViewController{
         super.viewDidLoad()
         
         tableView.register(TodoTableViewCell.self, forCellReuseIdentifier: cellId)
-            // editButtonItem comes with isEditing: Bool
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTodo))
         tableView.allowsMultipleSelectionDuringEditing = true
@@ -34,6 +34,68 @@ class TodoTableViewController: UITableViewController{
         self.toolbarItems = [flexible, deleteButton]
         self.navigationController?.toolbar.barTintColor = UIColor.white
         
+        fetchCompanies()
+        
+    }
+    
+    @objc func didPressDelete() {
+        let selectedRows = self.tableView.indexPathsForSelectedRows
+        
+        if selectedRows != nil {
+            for var selectionIndex in selectedRows! {
+                let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+                
+                tableView(tableView, commit: .delete, forRowAt: selectionIndex)
+                
+                let priorityIndex = selectionIndex.section
+                
+                switch priorityIndex {
+                case 0:
+                    let item = self.highTodos[selectionIndex.row]
+                    managedContext.delete(item)
+                    self.highTodos.remove(at: selectionIndex.row)
+                case 1:
+                    let item = self.midTodos[selectionIndex.row]
+                    managedContext.delete(item)
+                    self.midTodos.remove(at: selectionIndex.row)
+                case 2:
+                    let item = self.lowTodos[selectionIndex.row]
+                    managedContext.delete(item)
+                    self.lowTodos.remove(at: selectionIndex.row)
+                default:
+                    return
+                }
+                
+                self.tableView.deleteRows(at: [selectionIndex], with: .automatic)
+                CoreDataManager.shared.saveContext()
+            }
+        }
+    }
+    
+    private func fetchCompanies() {
+        
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<TodoEntity>(entityName: "TodoEntity")
+        do {
+            let companies = try managedContext.fetch(fetchRequest)
+            
+            for todo in companies {
+                if todo.priority == 0 {
+                    highTodos.append(todo)
+                } else if todo.priority == 1 {
+                    midTodos.append(todo)
+                } else if todo.priority == 2 {
+                    lowTodos.append(todo)
+                }
+            }
+            
+            print("Total TodoItem is" + String(companies.count))
+            
+            self.tableView.reloadData()
+            
+        }catch let err {
+            print("Failed to fetch companies: \(err)")
+        }
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -41,18 +103,8 @@ class TodoTableViewController: UITableViewController{
         tableView.setEditing(editing, animated: animated)
     }
     
-    @objc func didPressDelete() {
-        let selectedRows = self.tableView.indexPathsForSelectedRows
-        if selectedRows != nil {
-            for var selectionIndex in selectedRows! {
-                while selectionIndex.item >= todos.count {
-                    selectionIndex.item -= 1
-                }
-//                tableView(tableView, commit: .delete, forRowAt: selectionIndex)
-                todos.remove(at: selectionIndex.row)
-                tableView.deleteRows(at: [selectionIndex], with: .automatic)
-            }
-        }
+    private func priorityForSectionIndex(_ index: Int) -> TodoPrior.Priority? {
+        return TodoPrior.Priority(rawValue: index)
     }
     
     @objc func addTodo() {
@@ -63,16 +115,39 @@ class TodoTableViewController: UITableViewController{
     }
     
     // MARK: tableView datasource
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // How many cells ?
-        return todos.count
+        switch section {
+        case 0:
+            return highTodos.count
+        case 1:
+            return midTodos.count
+        case 2:
+            return lowTodos.count
+        default:
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // For each cell ?
+        // For each cell
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TodoTableViewCell
+
+        let priorityIndex = indexPath.section
         
-        cell.todoName.text = todos[indexPath.row].title
+        if priorityIndex == 0 {
+            let item = highTodos[indexPath.row]
+            cell.todoName.text = item.todoItem
+        }
+        if priorityIndex == 1 {
+            let item = midTodos[indexPath.row]
+            cell.todoName.text = item.todoItem
+        }
+        if priorityIndex == 2 {
+            let item = lowTodos[indexPath.row]
+            cell.todoName.text = item.todoItem
+        }
         
         cell.accessoryType = .detailDisclosureButton
         
@@ -92,8 +167,6 @@ extension TodoTableViewController {
         case .insert:
             print(".insert")
         case .delete:
-            todos.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
             print(".delete")
         default:
             break
@@ -101,24 +174,126 @@ extension TodoTableViewController {
         
         // we need to tell the app to delete the rows we have chosen
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            todos.remove(at: indexPath.item)
             tableView.reloadData()
         }
     }
 
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove = todos[sourceIndexPath.row]
-        todos.remove(at: sourceIndexPath.row)
-        todos.insert(itemToMove, at: destinationIndexPath.row)
+        
+        let priorityIndex = sourceIndexPath.section
+        let newPriorityIndex = destinationIndexPath.section
+        
+        
+        var item: TodoEntity?
+        
+        switch priorityIndex {
+        case 0:
+            item = highTodos[sourceIndexPath.row]
+            highTodos.remove(at: sourceIndexPath.row)
+        case 1:
+            item = midTodos[sourceIndexPath.row]
+            midTodos.remove(at: sourceIndexPath.row)
+        case 2:
+            item = lowTodos[sourceIndexPath.row]
+            lowTodos.remove(at: sourceIndexPath.row)
+        default:
+            return
+        }
+        
+        switch newPriorityIndex {
+        case 0:
+            highTodos.append(item!)
+            item!.priority = 0
+        case 1:
+            midTodos.append(item!)
+            item!.priority = 1
+        case 2:
+            lowTodos.append(item!)
+            item!.priority = 2
+        default:
+            return
+        }
+        
+        CoreDataManager.shared.saveContext()
+        
+        tableView.reloadData()
+        
     }
     
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let todoTitle = todos[indexPath.row].title
-        let todoPrior = todos[indexPath.row].priority
-        let detailVC = DetailViewController()
-        detailVC.todoTitle = todoTitle
-        detailVC.todoPriority = todoPrior
-        navigationController?.pushViewController(detailVC, animated: true)
+//    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//        let todoTitle = allItem[indexPath.row].title
+//        let todoPrior = allItem[indexPath.row].priority
+//        let detailVC = DetailViewController()
+//        detailVC.todoTitle = todoTitle
+//        detailVC.todoPriority = todoPrior
+//        navigationController?.pushViewController(detailVC, animated: true)
+//    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        // delete action
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") {
+            (action, indexPath) in
+            // remove from the tableView
+            let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+            
+            let priorityIndex = indexPath.section
+            
+            if priorityIndex == 0 {
+                let item = self.highTodos[indexPath.row]
+                managedContext.delete(item)
+                self.highTodos.remove(at: indexPath.row)
+            }
+            if priorityIndex == 1 {
+                let item = self.midTodos[indexPath.row]
+                managedContext.delete(item)
+                self.midTodos.remove(at: indexPath.row)
+            }
+            if priorityIndex == 2 {
+                let item = self.lowTodos[indexPath.row]
+                managedContext.delete(item)
+                self.lowTodos.remove(at: indexPath.row)
+            }
+            
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            CoreDataManager.shared.saveContext()
+            
+        }
+        
+//        // edit action
+//        let editAction = UITableViewRowAction(style: .normal, title: "Edit") {
+//            (action, indexPath) in
+//
+//            // 1. navigate to AddCompanyViewController
+//            let editVC = AddCompanyViewController()
+//            editVC.delegate = self
+//            editVC.company = self.companies[indexPath.row]
+//            let editNVC = LightStatusBarNavigationController(rootViewController: editVC)
+//
+//            self.present(editNVC, animated: true, completion: nil)
+//
+//        }
+//        return [deleteAction, editAction]
+        return [deleteAction]
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var title: String? = nil
+        switch section {
+        case 0:
+            title = "High Priority"
+        case 1:
+            title = "Medium Priority"
+        case 2:
+            title = "Low Priority"
+        default:
+            return "None"
+        }
+        return title
     }
 }
 
@@ -127,9 +302,9 @@ extension TodoTableViewController: AddTodoViewControllerDelegate {
         
     }
     
-    func addTodoDidFinish(_ todo: TodoOption) {
-        todos.append(todo)
-        tableView.reloadData() // Refresh!
+    func addTodoDidFinish(_ todo: TodoEntity) {
+        midTodos.append(todo)
+        tableView.reloadData()
     }
 }
 

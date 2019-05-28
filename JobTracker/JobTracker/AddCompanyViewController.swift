@@ -22,10 +22,27 @@ class AddCompanyViewController: UIViewController {
     var company: Company? {
         didSet {
             nameTextField.text = company?.name
+            if let imageData = company?.imageData {
+                companyImageView.image = UIImage(data: imageData)
+            }
             guard let applied = company?.applied else { return }
             datePicker.date = applied
         }
     }
+    
+    lazy var companyImageView: UIImageView = {
+        let iv = UIImageView(image: #imageLiteral(resourceName: "placeholder"))
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImage)))
+        iv.clipsToBounds = true
+        iv.layer.cornerRadius = 100
+        iv.backgroundColor = .white
+        iv.layer.borderWidth = 2
+        iv.layer.borderColor = UIColor.spaceGray.cgColor
+        iv.contentMode = .scaleToFill
+        return iv
+    }()
     
     let nameLabel: UILabel = {
         let lb = UILabel()
@@ -43,6 +60,8 @@ class AddCompanyViewController: UIViewController {
         dp.backgroundColor = .white
         dp.datePickerMode = .date
         dp.layer.cornerRadius = 16
+        dp.layer.borderWidth = 5
+        dp.layer.borderColor = UIColor.spaceGray.cgColor
         dp.layer.masksToBounds = true
         return dp
     }()
@@ -52,6 +71,7 @@ class AddCompanyViewController: UIViewController {
         tf.placeholder = "Enter your company..."
         tf.backgroundColor = .white
         tf.textColor = .black
+        tf.layer.borderWidth = 5
         tf.borderStyle = UITextField.BorderStyle.roundedRect
         tf.translatesAutoresizingMaskIntoConstraints = false
         
@@ -65,14 +85,22 @@ class AddCompanyViewController: UIViewController {
         setupUI()
     }
     
+    // MARK: helper functions
+    
     private func setupUI() {
+        view.addSubview(companyImageView)
+        companyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        companyImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 32).isActive = true
+        companyImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        companyImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
         let hStackView = UIStackView(arrangedSubviews: [nameLabel, nameTextField])
         hStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(hStackView)
         
         hStackView.distribution = .fillProportionally
         hStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-        hStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 32).isActive = true
+        hStackView.topAnchor.constraint(equalTo: companyImageView.bottomAnchor, constant: 32).isActive = true
         hStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         hStackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
@@ -97,6 +125,15 @@ class AddCompanyViewController: UIViewController {
         navigationItem.rightBarButtonItem = saveBtn
     }
     
+    
+    @objc func selectImage() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
     @objc func cancelPressed() {
         
         dismiss(animated: true, completion: nil)
@@ -104,28 +141,31 @@ class AddCompanyViewController: UIViewController {
     
     @objc func savePressed() {
         
-        // save or edit
+        // save
         if company == nil {
-            // save
+            // add (create)
             // NSManagedObjectContext: scratch pad
             // - viewContext: ManagedObjectContext (main thread)
             let managedContext = CoreDataManager.shared.persistentContainer.viewContext
             let newCompany = NSEntityDescription.insertNewObject(forEntityName: "Company", into: managedContext)
             newCompany.setValue(nameTextField.text ?? "", forKey: "name")
             newCompany.setValue(datePicker.date, forKey: "applied")
-//            do {
-//                try managedContext.save()
+            if let newCompanyImage = companyImageView.image {
+                let imageData = newCompanyImage.jpegData(compressionQuality: 0.7)
+                newCompany.setValue(imageData, forKey: "imageData")
+            }
             CoreDataManager.shared.saveContext()
-                dismiss(animated: true) {
-                    self.delegate?.addCompanyDidFfinish(company: newCompany as! Company)
-//                }
-//            } catch let err {
-//                print("Failed to save new company: \(err)")
+            dismiss(animated: true) {
+                self.delegate?.addCompanyDidFfinish(company: newCompany as! Company)
             }
         }else {
             // edit (update)
             company?.name = nameTextField.text
             company?.applied = datePicker.date
+            if let companyImage = companyImageView.image {
+                let imageData = companyImage.jpegData(compressionQuality: 0.7)
+                company?.imageData = imageData
+            }
             CoreDataManager.shared.saveContext()
             dismiss(animated: true) {
                 self.delegate?.editCompanyDidFinish(company: self.company!)
@@ -134,4 +174,21 @@ class AddCompanyViewController: UIViewController {
         
     }
 
+}
+
+extension AddCompanyViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[.editedImage] as? UIImage {
+            companyImageView.image = editedImage
+        }else if let originalImage = info[.originalImage] as? UIImage {
+        companyImageView.image = originalImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
 }
