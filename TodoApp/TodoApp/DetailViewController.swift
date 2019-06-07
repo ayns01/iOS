@@ -11,7 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var todoTitle: String!
-     var todoPriority: String!
+    var todoPriority: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

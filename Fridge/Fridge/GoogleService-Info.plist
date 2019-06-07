@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>261628616095-dlq5j6j2hug8oj8vv1bul8832tolj1vd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.261628616095-dlq5j6j2hug8oj8vv1bul8832tolj1vd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCad3C0k-DdEPABVbOrB3H1SV8V9wW0v3k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>261628616095</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.fridge</string>
+	<key>PROJECT_ID</key>
+	<string>fridge-bea4d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fridge-bea4d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:261628616095:ios:e7bde8a279d79173</string>
+	<key>DATABASE_URL</key>
+	<string>https://fridge-bea4d.firebaseio.com</string>
+</dict>
+</plist>

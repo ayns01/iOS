@@ -90,7 +90,7 @@ class CompaniesViewController: UITableViewController, AddCompanyControllerDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CompanyTableViewCell
         
         cell.company = companies[indexPath.row]
-//
+
         return cell
     }
     

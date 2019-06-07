@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Introduction View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WhichAnimalAreYou" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="IntroductionViewController" customModule="WhichAnimalAreYou" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="42.5" width="318.5" height="30"/>
                                         <state key="normal" title="Begin Personality Quiz"/>
                                         <connections>
-                                            <segue destination="9j9-Bw-aIG" kind="show" id="zAk-53-SNH"/>
+                                            <segue destination="8ee-G7-dHb" kind="show" id="zAk-53-SNH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -80,36 +80,114 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="135" y="132"/>
         </scene>
-        <!--View Controller-->
+        <!--Question View Controller-->
         <scene sceneID="RYV-54-UhY">
             <objects>
-                <viewController id="9j9-Bw-aIG" sceneMemberID="viewController">
+                <viewController id="9j9-Bw-aIG" customClass="QuestionViewController" customModule="WhichAnimalAreYou" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B7g-Lq-o8a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HIM-vb-dgU">
+                                <rect key="frame" x="20" y="358" width="46" height="180"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVi-Is-xKt">
+                                        <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cd9-si-8Dh">
+                                        <rect key="frame" x="0.0" y="50" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96f-c0-i1j">
+                                        <rect key="frame" x="0.0" y="100" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3V-Nj-oih">
+                                        <rect key="frame" x="0.0" y="150" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HIM-vb-dgU" firstAttribute="centerY" secondItem="B7g-Lq-o8a" secondAttribute="centerY" id="RdT-yP-3WB"/>
+                            <constraint firstItem="HIM-vb-dgU" firstAttribute="leading" secondItem="qAG-TH-UAR" secondAttribute="leading" constant="20" id="acA-8P-ZG7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qAG-TH-UAR"/>
                     </view>
+                    <navigationItem key="navigationItem" id="C03-wy-puh"/>
+                    <connections>
+                        <segue destination="MpQ-oB-Wu6" kind="show" id="SLO-ul-DKx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDO-So-u8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="945" y="132"/>
+            <point key="canvasLocation" x="1855.072463768116" y="131.91964285714286"/>
         </scene>
-        <!--View Controller-->
+        <!--Results-->
         <scene sceneID="nNk-vo-LZ3">
             <objects>
-                <viewController id="MpQ-oB-Wu6" sceneMemberID="viewController">
+                <viewController id="MpQ-oB-Wu6" customClass="ResultsViewController" customModule="WhichAnimalAreYou" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g5f-f1-tQX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="0yq-Xw-ofY">
+                                <rect key="frame" x="0.0" y="391" width="414" height="114.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkB-7V-1DW">
+                                        <rect key="frame" x="148.5" y="0.0" width="117" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRR-yX-2Gk">
+                                        <rect key="frame" x="186" y="94" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kGI-Gx-Q4Z" firstAttribute="trailing" secondItem="0yq-Xw-ofY" secondAttribute="trailing" id="7N6-nq-vqt"/>
+                            <constraint firstItem="0yq-Xw-ofY" firstAttribute="centerY" secondItem="g5f-f1-tQX" secondAttribute="centerY" id="aYc-dv-gi4"/>
+                            <constraint firstItem="0yq-Xw-ofY" firstAttribute="leading" secondItem="kGI-Gx-Q4Z" secondAttribute="leading" id="cHX-S1-0bN"/>
+                            <constraint firstItem="0yq-Xw-ofY" firstAttribute="centerX" secondItem="g5f-f1-tQX" secondAttribute="centerX" id="eMi-vn-dVu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kGI-Gx-Q4Z"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Results" id="wKg-eF-WzI">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="L7b-dT-vZP"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vqw-b6-zbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740" y="132"/>
+            <point key="canvasLocation" x="2649.275362318841" y="131.91964285714286"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mBg-hz-QC3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8ee-G7-dHb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WUz-Ko-eHE">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9j9-Bw-aIG" kind="relationship" relationship="rootViewController" id="Hix-un-nLV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4NM-Zk-W94" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="944.92753623188412" y="131.91964285714286"/>
         </scene>
     </scenes>
 </document>
