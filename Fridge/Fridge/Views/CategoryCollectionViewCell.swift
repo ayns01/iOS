@@ -13,7 +13,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     let categoryNameLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .mainFont(ofSize: 21)
+        lb.font = .regularFont(ofSize: 17)
         lb.textColor = .basicDarkBlue
         return lb
     }()

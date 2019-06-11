@@ -24,13 +24,17 @@
 		B10D233A22A5C7C100C0F9BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B10D233922A5C7C100C0F9BF /* GoogleService-Info.plist */; };
 		B10D233D22A71FF700C0F9BF /* ChooseCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D233C22A71FF700C0F9BF /* ChooseCategoryCollectionViewController.swift */; };
 		B10D233F22A7283900C0F9BF /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D233E22A7283900C0F9BF /* CategoryCollectionViewCell.swift */; };
-		B10D234622A75E1200C0F9BF /* HabelDemo.otf in Resources */ = {isa = PBXBuildFile; fileRef = B10D234522A75E1200C0F9BF /* HabelDemo.otf */; };
-		B10D234A22A76EAC00C0F9BF /* YunusH.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D234922A76EAC00C0F9BF /* YunusH.ttf */; };
 		B10D234C22A7AB7100C0F9BF /* ChooseFoodTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D234B22A7AB7100C0F9BF /* ChooseFoodTableViewController.swift */; };
 		B10D234E22A8674900C0F9BF /* FoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D234D22A8674900C0F9BF /* FoodTableViewCell.swift */; };
 		B10D235022A871B900C0F9BF /* SetExpirationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D234F22A871B900C0F9BF /* SetExpirationViewController.swift */; };
 		B10D235622A9B8D100C0F9BF /* FoodDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D235522A9B8D100C0F9BF /* FoodDictionary.swift */; };
 		B10D235822AA4C8400C0F9BF /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D235722AA4C8400C0F9BF /* UIView+ConstraintLayout.swift */; };
+		B10D235F22AB897100C0F9BF /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D235E22AB897100C0F9BF /* Lato-Light.ttf */; };
+		B10D236122ACB22C00C0F9BF /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D236022ACB22C00C0F9BF /* Lato-Regular.ttf */; };
+		B10D236322AF01F900C0F9BF /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D236222AF01F900C0F9BF /* FoodItem.swift */; };
+		B10D236522AF1FF000C0F9BF /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D236422AF1FF000C0F9BF /* Lato-Heavy.ttf */; };
+		B10D236722AF205700C0F9BF /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D236622AF205700C0F9BF /* Lato-Bold.ttf */; };
+		B10D236C22B0712C00C0F9BF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D236B22B0712C00C0F9BF /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,13 +58,17 @@
 		B10D233922A5C7C100C0F9BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B10D233C22A71FF700C0F9BF /* ChooseCategoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		B10D233E22A7283900C0F9BF /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		B10D234522A75E1200C0F9BF /* HabelDemo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HabelDemo.otf; sourceTree = "<group>"; };
-		B10D234922A76EAC00C0F9BF /* YunusH.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = YunusH.ttf; sourceTree = "<group>"; };
 		B10D234B22A7AB7100C0F9BF /* ChooseFoodTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFoodTableViewController.swift; sourceTree = "<group>"; };
 		B10D234D22A8674900C0F9BF /* FoodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTableViewCell.swift; sourceTree = "<group>"; };
 		B10D234F22A871B900C0F9BF /* SetExpirationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetExpirationViewController.swift; sourceTree = "<group>"; };
 		B10D235522A9B8D100C0F9BF /* FoodDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDictionary.swift; sourceTree = "<group>"; };
 		B10D235722AA4C8400C0F9BF /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
+		B10D235E22AB897100C0F9BF /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		B10D236022ACB22C00C0F9BF /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../Downloads/lato/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		B10D236222AF01F900C0F9BF /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		B10D236422AF1FF000C0F9BF /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Heavy.ttf"; sourceTree = "<group>"; };
+		B10D236622AF205700C0F9BF /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		B10D236B22B0712C00C0F9BF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E5C9FC64C3EFC74EF8B72A0F /* Pods-Fridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridge.release.xcconfig"; path = "Target Support Files/Pods-Fridge/Pods-Fridge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,8 +104,10 @@
 		B10D22F3229F423400C0F9BF = {
 			isa = PBXGroup;
 			children = (
-				B10D234522A75E1200C0F9BF /* HabelDemo.otf */,
-				B10D234922A76EAC00C0F9BF /* YunusH.ttf */,
+				B10D235E22AB897100C0F9BF /* Lato-Light.ttf */,
+				B10D236022ACB22C00C0F9BF /* Lato-Regular.ttf */,
+				B10D236422AF1FF000C0F9BF /* Lato-Heavy.ttf */,
+				B10D236622AF205700C0F9BF /* Lato-Bold.ttf */,
 				B10D22FE229F423500C0F9BF /* Fridge */,
 				B10D22FD229F423500C0F9BF /* Products */,
 				6BA774BCF1CB6DCD2AD16B72 /* Pods */,
@@ -116,6 +126,7 @@
 		B10D22FE229F423500C0F9BF /* Fridge */ = {
 			isa = PBXGroup;
 			children = (
+				B10D235922AB1F7300C0F9BF /* Model */,
 				B10D234022A7352800C0F9BF /* Utils */,
 				B10D232622A09C5700C0F9BF /* Controllers */,
 				B10D233222A1E05D00C0F9BF /* Subclasses */,
@@ -150,6 +161,7 @@
 				B10D234F22A871B900C0F9BF /* SetExpirationViewController.swift */,
 				B10D233522A1E42600C0F9BF /* ShoppingListTableViewController.swift */,
 				B10D233322A1E3BA00C0F9BF /* MainTabBarController.swift */,
+				B10D236B22B0712C00C0F9BF /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,6 +200,14 @@
 				B10D235522A9B8D100C0F9BF /* FoodDictionary.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		B10D235922AB1F7300C0F9BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B10D236222AF01F900C0F9BF /* FoodItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,12 +270,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B10D234622A75E1200C0F9BF /* HabelDemo.otf in Resources */,
 				B10D230A229F423600C0F9BF /* LaunchScreen.storyboard in Resources */,
 				B10D2307229F423600C0F9BF /* Assets.xcassets in Resources */,
+				B10D236122ACB22C00C0F9BF /* Lato-Regular.ttf in Resources */,
 				B10D2305229F423500C0F9BF /* Main.storyboard in Resources */,
-				B10D234A22A76EAC00C0F9BF /* YunusH.ttf in Resources */,
+				B10D236522AF1FF000C0F9BF /* Lato-Heavy.ttf in Resources */,
 				B10D233A22A5C7C100C0F9BF /* GoogleService-Info.plist in Resources */,
+				B10D236722AF205700C0F9BF /* Lato-Bold.ttf in Resources */,
+				B10D235F22AB897100C0F9BF /* Lato-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,14 +315,24 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Fridge/Pods-Fridge-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,11 +351,13 @@
 				B10D2302229F423500C0F9BF /* ViewController.swift in Sources */,
 				B10D235022A871B900C0F9BF /* SetExpirationViewController.swift in Sources */,
 				B10D2313229F4F7000C0F9BF /* UsebyCardCollectionViewController.swift in Sources */,
+				B10D236322AF01F900C0F9BF /* FoodItem.swift in Sources */,
 				B10D234E22A8674900C0F9BF /* FoodTableViewCell.swift in Sources */,
 				B10D233422A1E3BA00C0F9BF /* MainTabBarController.swift in Sources */,
 				B10D233F22A7283900C0F9BF /* CategoryCollectionViewCell.swift in Sources */,
 				B10D2300229F423500C0F9BF /* AppDelegate.swift in Sources */,
 				B10D232922A0D6B700C0F9BF /* UIColor+Scheme.swift in Sources */,
+				B10D236C22B0712C00C0F9BF /* DetailViewController.swift in Sources */,
 				B10D234C22A7AB7100C0F9BF /* ChooseFoodTableViewController.swift in Sources */,
 				B10D233622A1E42600C0F9BF /* ShoppingListTableViewController.swift in Sources */,
 				B10D232522A09B2B00C0F9BF /* BaseCollectionViewController.swift in Sources */,

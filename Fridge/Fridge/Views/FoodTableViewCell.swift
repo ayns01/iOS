@@ -13,7 +13,7 @@ class FoodTableViewCell: UITableViewCell {
     let foodNameLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .mainFont(ofSize: 21)
+        lb.font = .mainFont(ofSize: 20)
         lb.textColor = .basicDarkBlue
         return lb
     }()

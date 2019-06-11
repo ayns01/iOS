@@ -16,6 +16,18 @@ extension UIFont {
     }
     
     static func mainFont(ofSize size: CGFloat) -> UIFont {
-        return customFont(name: "YunusH", size: size)
+        return customFont(name: "Lato-Light", size: size)
+    }
+    
+    static func regularFont(ofSize size: CGFloat) -> UIFont {
+        return customFont(name: "Lato-Regular", size: size)
+    }
+    
+    static func heavyFont(ofSize size: CGFloat) -> UIFont {
+        return customFont(name: "Lato-Heavy", size: size)
+    }
+    
+    static func boldFont(ofSize size: CGFloat) -> UIFont {
+        return customFont(name: "Lato-Bold", size: size)
     }
 }

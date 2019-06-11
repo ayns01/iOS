@@ -10,11 +10,24 @@ import UIKit
 
 class UsebyCardCollectionViewCell: UICollectionViewCell {
     
+    let imageView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+    
     let nameLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.text = "Grape"
-        lb.font = .mainFont(ofSize: 25)
+        lb.font = .boldFont(ofSize: 18)
+        lb.textColor = .basicDarkBlue
+        return lb
+    }()
+    
+    let quantityLabel: UILabel = {
+        let lb = UILabel()
+        lb.translatesAutoresizingMaskIntoConstraints = false
+        lb.font = .regularFont(ofSize: 16)
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -22,8 +35,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
     let expirationCountDateLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.text = "1day"
-        lb.font = .mainFont(ofSize: 23)
+        lb.font = .regularFont(ofSize: 18)
         lb.textColor = UIColor.black
         return lb
     }()
@@ -32,7 +44,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.text = "Use by/ "
-        lb.font = .mainFont(ofSize: 20)
+        lb.font = .regularFont(ofSize: 14)
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -40,8 +52,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
     let usebyDetailDateLbel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.text = "23 Jun 2019"
-        lb.font = .mainFont(ofSize: 23)
+        lb.font = .boldFont(ofSize: 16)
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -50,8 +61,14 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = .white
         
+        addSubview(imageView)
+        imageView.anchors(topAnchor: topAnchor, leadingAnchor: leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 15, left: 15, bottom: 0, right: 0))
+        
         addSubview(nameLabel)
-        nameLabel.anchors(topAnchor: topAnchor, leadingAnchor: leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 15, left: 15, bottom: 0, right: 0))
+        nameLabel.anchors(topAnchor: topAnchor, leadingAnchor: imageView.trailingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 15, left: 15, bottom: 0, right: 0))
+        
+        addSubview(quantityLabel)
+        quantityLabel.anchors(topAnchor: topAnchor, leadingAnchor: nameLabel.trailingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 17, left: 5, bottom: 0, right: 0))
         
         addSubview(expirationCountDateLabel)
         expirationCountDateLabel.anchors(topAnchor: topAnchor, leadingAnchor: nil, trailingAnchor: trailingAnchor, bottomAnchor: nil, padding: .init(top: 15, left: 0, bottom: 0, right: 15))
@@ -66,6 +83,20 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
         hStackView.trailingAnchor.constraint(equalTo:trailingAnchor, constant: -15).isActive = true
         hStackView.bottomAnchor.constraint(equalTo:bottomAnchor, constant: -5).isActive = true
         
+        setupLayer()
+    }
+    
+    fileprivate func setupLayer() {
+        layer.cornerRadius = 8
+        
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.vividYellow.cgColor
+        
+        layer.shadowColor = UIColor.lightGray.cgColor
+        layer.shadowOffset = CGSize(width: 15.0, height: 5.0)
+        layer.shadowRadius = 0.0
+        layer.shadowOpacity = 0.5
+        layer.masksToBounds = false
     }
     
     required init?(coder aDecoder: NSCoder) {

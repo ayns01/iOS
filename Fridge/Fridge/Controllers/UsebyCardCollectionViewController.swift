@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class UsebyCardCollectionViewController: BaseCollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let reuseIdentifier = "reuseIdentifier"
+    var foodItems = [FoodItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,27 +21,16 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
         navigationItem.title = "Fridge"
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.basicDarkBlue,
-             NSAttributedString.Key.font: UIFont.mainFont(ofSize: 28)]
+             NSAttributedString.Key.font: UIFont.mainFont(ofSize: 25)]
         
         collectionView.register(UsebyCardCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
         
-        setupLeftAddButton()
-        setupRightAddButton()
+        getDataFromFirestore()
     }
     
     // MARK: - helper methods
-    
-    private func setupLeftAddButton() {
-        let addButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonItemClicked))
-        navigationItem.leftBarButtonItem = addButton
-    }
-    
-    private func setupRightAddButton() {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonItemClicked))
-        navigationItem.rightBarButtonItem = addButton
-    }
     
     @objc func editButtonItemClicked() {
         print("Click editProduct")
@@ -47,41 +38,83 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
     
     @objc func addButtonItemClicked() {
         let chooseCategoryVC = ChooseCategoryCollectionViewController()
-//        chooseCategoryVC.delegate = self
         navigationController?.pushViewController(chooseCategoryVC, animated: true)
     }
 
+    private func getDataFromFirestore() {
+        let db = Firestore.firestore()
+        db.collection("usebyInfo").addSnapshotListener { (snapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                self.foodItems.removeAll()
+                for document in snapshot!.documents {
+                    let docId = document.documentID
+                    let category = document.get("category") as? String ?? ""
+                    let foodName = document.get("foodName") as? String ?? ""
+                    let notification = document.get("notification") as? Bool ?? false
+                    let quantity = document.get("quantity") as? Int ?? 1
+                    let usebyDateTimestamp = document.get("usebyDate") as? Timestamp ?? Timestamp()
+                    let date = usebyDateTimestamp.dateValue()
+                    
+                    self.foodItems.append(FoodItem(id: docId, category: category, foodName: foodName, notification: notification, quantity: quantity, usebyDate: date))
+                }
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    private func setCategoryImage(category: String) -> UIImage {
+        switch category {
+        case "Vegetable":
+            return UIImage(imageLiteralResourceName: "vegetable")
+        case "Fruit":
+            return UIImage(imageLiteralResourceName: "fruit")
+        case "Meat":
+            return UIImage(imageLiteralResourceName: "meat")
+        case "Fish":
+            return UIImage(imageLiteralResourceName: "fish")
+        case "Dairy":
+            return UIImage(imageLiteralResourceName: "dairy")
+        default:
+            return UIImage(imageLiteralResourceName: "fish")
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return foodItems.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UsebyCardCollectionViewCell
-        cell.layer.masksToBounds = true
-        cell.layer.cornerRadius = 8
-        
-        cell.layer.borderWidth = 2.0
-        cell.layer.borderColor = UIColor.eggYellow.cgColor
-        
-        cell.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 15.0, height: 4.0)
-        cell.layer.shadowRadius = 0.0
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.layer.cornerRadius).cgPath
-        
+        cell.nameLabel.text = foodItems[indexPath.row].foodName
+        if foodItems[indexPath.row].quantity > 1 {
+            let quantStr = String(foodItems[indexPath.row].quantity)
+            cell.quantityLabel.text = quantStr
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd.yyyy"
+        cell.usebyDetailDateLbel.text = dateFormatter.string(from: foodItems[indexPath.row].usebyDate)
+        cell.imageView.image = setCategoryImage(category: foodItems[indexPath.row].category)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    // MARK: - UICollectionViewDelegate
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+    }
+    
+    // MARK: - Table view layout
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width - padding * 2, height: 100)
     }
     
-    final let spacing: CGFloat = 15
-    final let padding: CGFloat = 15
+    let spacing: CGFloat = 15
+    let padding: CGFloat = 15
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return spacing

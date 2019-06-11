@@ -24,6 +24,8 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
              NSAttributedString.Key.font: UIFont.mainFont(ofSize: 20)]
 
         self.collectionView!.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        setupNavigation()
     }
 
     // MARK: UICollectionViewDataSource
@@ -35,7 +37,7 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
         cell.layer.masksToBounds = true
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 12
 
         cell.layer.backgroundColor = bgColorOfCategoryCell(index: indexPath.row)
         cell.categoryNameLabel.text = categories[indexPath.row]
@@ -46,16 +48,11 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
     // MARK: - UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // selected cell
-        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-        
         let categoryName = categories[indexPath.row]
         
         let chooseFoodVC = ChooseFoodTableViewController()
         chooseFoodVC.categoryName = categoryName
-        //        chooseCategoryVC.delegate = self
         navigationController?.pushViewController(chooseFoodVC, animated: true)
-
     }
     
     
@@ -79,6 +76,16 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: spacing, left: padding, bottom: spacing, right: padding)
+    }
+    
+    fileprivate func setupNavigation() {
+        let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
+        cancelBtn.tintColor = .basicDarkBlue
+        navigationItem.leftBarButtonItem = cancelBtn
+    }
+    
+    @objc func cancelPressed() {
+        dismiss(animated: true, completion: nil)
     }
     
     private func bgColorOfCategoryCell(index: Int) -> CGColor {
