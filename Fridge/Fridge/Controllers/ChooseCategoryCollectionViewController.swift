@@ -18,12 +18,14 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .bgGrey
-        navigationItem.title = "Category"
+        navigationItem.title = "Food Group"
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.basicDarkBlue,
              NSAttributedString.Key.font: UIFont.mainFont(ofSize: 20)]
 
         self.collectionView!.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        collectionView.contentInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
         
         setupNavigation()
     }

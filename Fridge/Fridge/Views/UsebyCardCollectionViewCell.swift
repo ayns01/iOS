@@ -19,7 +19,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .boldFont(ofSize: 18)
+        lb.font = .boldFont(ofSize: 17)
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -27,7 +27,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
     let quantityLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .regularFont(ofSize: 16)
+        lb.font = .regularFont(ofSize: 15)
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -35,8 +35,8 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
     let expirationCountDateLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .regularFont(ofSize: 18)
-        lb.textColor = UIColor.black
+//        lb.font = .boldFont(ofSize: 16)
+//        lb.textColor = UIColor.black
         return lb
     }()
     
@@ -44,7 +44,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.text = "Use by/ "
-        lb.font = .regularFont(ofSize: 14)
+        lb.font = .regularFont(ofSize: 13)
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -52,7 +52,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
     let usebyDetailDateLbel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .boldFont(ofSize: 16)
+        lb.font = .boldFont(ofSize: 15)
         lb.textColor = .basicDarkBlue
         return lb
     }()

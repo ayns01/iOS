@@ -21,7 +21,7 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
         navigationItem.title = "Fridge"
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.basicDarkBlue,
-             NSAttributedString.Key.font: UIFont.mainFont(ofSize: 25)]
+             NSAttributedString.Key.font: UIFont.heavyFont(ofSize: 21)]
         
         collectionView.register(UsebyCardCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
@@ -98,6 +98,24 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
         dateFormatter.dateFormat = "MM.dd.yyyy"
         cell.usebyDetailDateLbel.text = dateFormatter.string(from: foodItems[indexPath.row].usebyDate)
         cell.imageView.image = setCategoryImage(category: foodItems[indexPath.row].category)
+        
+        let dateRangeStart = Date()
+        let dateRangeEnd = foodItems[indexPath.row].usebyDate
+        let components = Calendar.current.dateComponents([.day], from: dateRangeStart, to: dateRangeEnd)
+//        print("difference is \(components.month ?? 0) months and \(components.weekOfYear ?? 0) weeks and \(components.day ?? 0)")
+        cell.expirationCountDateLabel.text = "\(components.day ?? 0) days"
+        let day = components.day ?? 0
+        if day > 3 {
+            cell.expirationCountDateLabel.font = .regularFont(ofSize: 15)
+            cell.expirationCountDateLabel.textColor = UIColor.darkGray
+        }else if (-1 < day) && (day < 3)  {
+            cell.expirationCountDateLabel.font = .boldFont(ofSize: 15)
+            cell.expirationCountDateLabel.textColor = UIColor.tomatoRed
+        }else {
+            cell.expirationCountDateLabel.font = .boldFont(ofSize: 15)
+            cell.expirationCountDateLabel.textColor = .doraemonBlue
+        }
+        
         return cell
     }
     
