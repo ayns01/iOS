@@ -35,8 +35,6 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
     let expirationCountDateLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-//        lb.font = .boldFont(ofSize: 16)
-//        lb.textColor = UIColor.black
         return lb
     }()
     
@@ -49,7 +47,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
         return lb
     }()
     
-    let usebyDetailDateLbel: UILabel = {
+    let usebyDetailDateLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.font = .boldFont(ofSize: 15)
@@ -73,7 +71,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
         addSubview(expirationCountDateLabel)
         expirationCountDateLabel.anchors(topAnchor: topAnchor, leadingAnchor: nil, trailingAnchor: trailingAnchor, bottomAnchor: nil, padding: .init(top: 15, left: 0, bottom: 0, right: 15))
         
-        let hStackView = UIStackView(arrangedSubviews: [usebyTextLabel, usebyDetailDateLbel])
+        let hStackView = UIStackView(arrangedSubviews: [usebyTextLabel, usebyDetailDateLabel])
         hStackView.translatesAutoresizingMaskIntoConstraints = false
         hStackView.distribution = .fillProportionally
         hStackView.axis = .horizontal
@@ -90,7 +88,7 @@ class UsebyCardCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 8
         
         layer.borderWidth = 0.5
-        layer.borderColor = UIColor.vividYellow.cgColor
+        layer.borderColor = UIColor.firstColor.cgColor
         
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOffset = CGSize(width: 15.0, height: 5.0)

@@ -16,7 +16,7 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.tintColor = .basicDarkBlue
+        navigationController?.navigationBar.tintColor = .secondColor
         collectionView.backgroundColor = .bgGrey
         navigationItem.title = "Fridge"
         self.navigationController?.navigationBar.titleTextAttributes =
@@ -29,17 +29,11 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
         
         getDataFromFirestore()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(#function)
+    }
     // MARK: - helper methods
-    
-    @objc func editButtonItemClicked() {
-        print("Click editProduct")
-    }
-    
-    @objc func addButtonItemClicked() {
-        let chooseCategoryVC = ChooseCategoryCollectionViewController()
-        navigationController?.pushViewController(chooseCategoryVC, animated: true)
-    }
 
     private func getDataFromFirestore() {
         let db = Firestore.firestore()
@@ -52,12 +46,12 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
                     let docId = document.documentID
                     let category = document.get("category") as? String ?? ""
                     let foodName = document.get("foodName") as? String ?? ""
-                    let notification = document.get("notification") as? Bool ?? false
+//                    let notification = document.get("notification") as? Bool ?? false
                     let quantity = document.get("quantity") as? Int ?? 1
                     let usebyDateTimestamp = document.get("usebyDate") as? Timestamp ?? Timestamp()
                     let date = usebyDateTimestamp.dateValue()
                     
-                    self.foodItems.append(FoodItem(id: docId, category: category, foodName: foodName, notification: notification, quantity: quantity, usebyDate: date))
+                    self.foodItems.append(FoodItem(id: docId, category: category, foodName: foodName, quantity: quantity, usebyDate: date))
                 }
                 self.collectionView.reloadData()
             }
@@ -84,25 +78,31 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
     // MARK: - Table view data source
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if (self.foodItems.count == 0) {
+            self.collectionView.setEmptyMessage("Keep your fridge fresh !")
+        } else {
+            self.collectionView.restore()
+        }
+        
         return foodItems.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UsebyCardCollectionViewCell
         cell.nameLabel.text = foodItems[indexPath.row].foodName
-        if foodItems[indexPath.row].quantity > 1 {
+        if foodItems[indexPath.row].quantity >= 1 {
             let quantStr = String(foodItems[indexPath.row].quantity)
             cell.quantityLabel.text = quantStr
         }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM.dd.yyyy"
-        cell.usebyDetailDateLbel.text = dateFormatter.string(from: foodItems[indexPath.row].usebyDate)
+        cell.usebyDetailDateLabel.text = dateFormatter.string(from: foodItems[indexPath.row].usebyDate)
         cell.imageView.image = setCategoryImage(category: foodItems[indexPath.row].category)
         
         let dateRangeStart = Date()
         let dateRangeEnd = foodItems[indexPath.row].usebyDate
         let components = Calendar.current.dateComponents([.day], from: dateRangeStart, to: dateRangeEnd)
-//        print("difference is \(components.month ?? 0) months and \(components.weekOfYear ?? 0) weeks and \(components.day ?? 0)")
+
         cell.expirationCountDateLabel.text = "\(components.day ?? 0) days"
         let day = components.day ?? 0
         if day > 3 {
@@ -123,6 +123,18 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let detailVC = DetailViewController()
+        detailVC.categoryNameLabel.text = foodItems[indexPath.row].category
+        detailVC.imageView.image = setCategoryImage(category: foodItems[indexPath.row].category)
+        detailVC.foodNameLabel.text = foodItems[indexPath.row].foodName
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd.yyyy"
+        let dateStr = dateFormatter.string(from: foodItems[indexPath.row].usebyDate)
+        let date = dateFormatter.date(from: dateStr) ?? Date()
+        detailVC.usebyDatePicker.date = date
+        detailVC.quantityLabel.text = String(foodItems[indexPath.row].quantity)
+        detailVC.docId = foodItems[indexPath.row].id
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     // MARK: - Table view layout
@@ -131,7 +143,7 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
         return .init(width: view.frame.width - padding * 2, height: 100)
     }
     
-    let spacing: CGFloat = 15
+    let spacing: CGFloat = 16
     let padding: CGFloat = 15
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

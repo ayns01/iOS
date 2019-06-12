@@ -21,5 +21,9 @@ extension UIColor {
     static let basicDarkBlue = UIColor(red: 4/255, green: 42/255, blue: 79/255, alpha: 1.0)
     
     static let vividYellow = UIColor(red: 228/255, green: 243/255, blue: 27/255, alpha: 1.0)
+
+    static let firstColor = UIColor(red: 246/255, green: 211/255, blue: 63/255, alpha: 1.0)
+    
+    static let secondColor = UIColor(red: 76/255, green: 210/255, blue: 168/255, alpha: 1.0)
         
 }

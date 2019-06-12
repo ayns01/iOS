@@ -19,6 +19,7 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
         super.viewDidLoad()
         collectionView.backgroundColor = .bgGrey
         navigationItem.title = "Food Group"
+        navigationController?.navigationBar.tintColor = .secondColor
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.basicDarkBlue,
              NSAttributedString.Key.font: UIFont.mainFont(ofSize: 20)]
@@ -82,7 +83,7 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
     
     fileprivate func setupNavigation() {
         let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
-        cancelBtn.tintColor = .basicDarkBlue
+        cancelBtn.tintColor = .secondColor
         navigationItem.leftBarButtonItem = cancelBtn
     }
     

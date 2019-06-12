@@ -12,7 +12,6 @@ struct FoodItem {
     let id: String
     let category: String
     let foodName: String
-    let notification: Bool
     let quantity: Int
     let usebyDate: Date
 }

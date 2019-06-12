@@ -17,7 +17,7 @@ class SetExpirationViewController: UIViewController {
     let categoryNameLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .mainFont(ofSize: 25)
+        lb.font = .boldFont(ofSize: 16)
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -25,7 +25,7 @@ class SetExpirationViewController: UIViewController {
     let foodNameLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .mainFont(ofSize: 20)
+        lb.font = .regularFont(ofSize: 20)
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -33,7 +33,7 @@ class SetExpirationViewController: UIViewController {
     let usebydateTitleLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .mainFont(ofSize: 20)
+        lb.font = .regularFont(ofSize: 16)
         lb.text = "Use by Date"
         lb.textColor = .basicDarkBlue
         return lb
@@ -51,8 +51,8 @@ class SetExpirationViewController: UIViewController {
     let quantityTitleLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .mainFont(ofSize: 20)
-        lb.text = "quantity"
+        lb.font = .regularFont(ofSize: 16)
+        lb.text = "Quantity"
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -67,7 +67,7 @@ class SetExpirationViewController: UIViewController {
     let quantityLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .mainFont(ofSize: 20)
+        lb.font = .regularFont(ofSize: 18)
         lb.text = "1"
         lb.textColor = .basicDarkBlue
         return lb
@@ -80,29 +80,15 @@ class SetExpirationViewController: UIViewController {
         return butt
     }()
     
-    let notificationTitleLabel: UILabel = {
-        let lb = UILabel()
-        lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .mainFont(ofSize: 20)
-        lb.text = "expired notification"
-        lb.textColor = .basicDarkBlue
-        return lb
-    }()
-    
-    let notificationSwitch: UISwitch = {
-        let sw = UISwitch()
-        return sw
-    }()
-    
     let okButton: UIButton = {
         let butt = UIButton(type: .system)
         butt.setTitle("OK", for: .normal)
         butt.setTitleColor(.basicDarkBlue, for: .normal)
-        butt.titleLabel?.font = .mainFont(ofSize: 25)
-        butt.backgroundColor = .vividYellow
+        butt.titleLabel?.font = .regularFont(ofSize: 20)
+        butt.backgroundColor = .firstColor
         butt.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        butt.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        butt.layer.cornerRadius = 16
+        butt.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        butt.layer.cornerRadius = 20
         return butt
     }()
 
@@ -151,20 +137,13 @@ class SetExpirationViewController: UIViewController {
         let date = usebyDatePicker.date
         let quantStr = quantityLabel.text ?? "1"
         let quant = Int(quantStr) ?? 1
-
-        var isSwitchOn = false
-        if notificationSwitch.isOn {
-            isSwitchOn = true
-        } else {
-            isSwitchOn = false
-        }
         
-        sendDataToFireStore(categoryName: categoryName, foodName: foodName, quantity: quant, usebyDate: date, notification: isSwitchOn)
+        sendDataToFireStore(categoryName: categoryName, foodName: foodName, quantity: quant, usebyDate: date)
         
         self.navigationController?.popToRootViewController(animated: true)
     }
 
-    private func sendDataToFireStore(categoryName: String, foodName: String, quantity: Int, usebyDate: Date, notification: Bool) {
+    private func sendDataToFireStore(categoryName: String, foodName: String, quantity: Int, usebyDate: Date) {
 
         /* Add a new document with a generated ID */
         var ref: DocumentReference? = nil
@@ -173,8 +152,7 @@ class SetExpirationViewController: UIViewController {
             "category": categoryName,
             "foodName": foodName,
             "usebyDate": usebyDate,
-            "quantity": quantity,
-            "notification": notification
+            "quantity": quantity
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -196,13 +174,13 @@ class SetExpirationViewController: UIViewController {
         vFoodStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 35).isActive = true
         
         view.addSubview(usebydateTitleLabel)
-        usebydateTitleLabel.anchors(topAnchor: vFoodStackView.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 30, left: 15, bottom: 0, right: 0))
+        usebydateTitleLabel.anchors(topAnchor: vFoodStackView.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 35, left: 15, bottom: 0, right: 0))
         
         view.addSubview(usebyDatePicker)
         usebyDatePicker.anchors(topAnchor: usebydateTitleLabel.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: nil, padding: .init(top: 5, left: 0, bottom: 0, right: 0))
         
         view.addSubview(quantityTitleLabel)
-        quantityTitleLabel.anchors(topAnchor: usebyDatePicker.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 30, left: 15, bottom: 0, right: 0))
+        quantityTitleLabel.anchors(topAnchor: usebyDatePicker.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 35, left: 15, bottom: 0, right: 0))
         
         let hQuantityStackView = UIStackView(arrangedSubviews: [minusButt, quantityLabel, plusButt])
         hQuantityStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -212,15 +190,8 @@ class SetExpirationViewController: UIViewController {
         view.addSubview(hQuantityStackView)
         hQuantityStackView.anchors(topAnchor: usebyDatePicker.bottomAnchor, leadingAnchor: nil, trailingAnchor: view.trailingAnchor, bottomAnchor: nil, padding: .init(top: 30, left: 0, bottom: 0, right: 15))
         
-        let hNotificationStackView = UIStackView(arrangedSubviews: [notificationTitleLabel, notificationSwitch])
-        hNotificationStackView.translatesAutoresizingMaskIntoConstraints = false
-        hNotificationStackView.distribution = .fillProportionally
-        hNotificationStackView.axis = .horizontal
-        view.addSubview(hNotificationStackView)
-        hNotificationStackView.anchors(topAnchor: hQuantityStackView.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: nil, padding: .init(top: 35, left: 15, bottom: 0, right: 15))
-        
         view.addSubview(okButton)
-        okButton.anchors(topAnchor: nil, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor, padding: .init(top: 0, left: 15, bottom: 55, right: 15))
+        okButton.anchors(topAnchor: nil, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor, padding: .init(top: 0, left: 35, bottom: 85, right: 35))
     }
 
 }

@@ -39,13 +39,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let navShoppingController = UINavigationController(rootViewController: shoppingVC)
         
         fridgeVC.tabBarItem.image = UIImage(named: "icon-fridge")
-        fridgeVC.tabBarItem.title = "Fridge"
+        fridgeVC.tabBarItem.title = ""
 //        fridgeVC.tabBarItem.selectedImage = UIImage(named: "icon-fridge")
         addVC.tabBarItem.image = UIImage(named: "icon-plus")
         addVC.tabBarItem.title = ""
 //        addVC.tabBarItem.selectedImage = UIImage(named: "icon-plus")
         shoppingVC.tabBarItem.image = UIImage(named: "icon-shopping")
-        shoppingVC.tabBarItem.title = "Shopping"
+        shoppingVC.tabBarItem.title = ""
 //        shoppingVC.tabBarItem.selectedImage = UIImage(named: "icon-shopping")
         
         
