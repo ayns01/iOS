@@ -46,7 +46,6 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
                     let docId = document.documentID
                     let category = document.get("category") as? String ?? ""
                     let foodName = document.get("foodName") as? String ?? ""
-//                    let notification = document.get("notification") as? Bool ?? false
                     let quantity = document.get("quantity") as? Int ?? 1
                     let usebyDateTimestamp = document.get("usebyDate") as? Timestamp ?? Timestamp()
                     let date = usebyDateTimestamp.dateValue()
@@ -70,6 +69,22 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
             return UIImage(imageLiteralResourceName: "fish")
         case "Dairy":
             return UIImage(imageLiteralResourceName: "dairy")
+        case "Condiment":
+            return UIImage(imageLiteralResourceName: "condiment")
+        case "Bean":
+            return UIImage(imageLiteralResourceName: "bean")
+        case "Cereal":
+            return UIImage(imageLiteralResourceName: "cereal")
+        case "Seafood":
+            return UIImage(imageLiteralResourceName: "seafood")
+        case "Seaweed":
+            return UIImage(imageLiteralResourceName: "seaweed")
+        case "Mushroom":
+            return UIImage(imageLiteralResourceName: "mushroom")
+        case "Noodle/Pasta":
+            return UIImage(imageLiteralResourceName: "noodle")
+        case "Drink":
+            return UIImage(imageLiteralResourceName: "drink")
         default:
             return UIImage(imageLiteralResourceName: "fish")
         }

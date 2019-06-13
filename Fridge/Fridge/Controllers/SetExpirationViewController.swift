@@ -25,7 +25,7 @@ class SetExpirationViewController: UIViewController {
     let foodNameLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = .regularFont(ofSize: 20)
+        lb.font = .regularFont(ofSize: 21)
         lb.textColor = .basicDarkBlue
         return lb
     }()
@@ -171,7 +171,11 @@ class SetExpirationViewController: UIViewController {
         vFoodStackView.spacing = 0
         view.addSubview(vFoodStackView)
         vFoodStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        vFoodStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 35).isActive = true
+        vFoodStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        
+        let divider = UIView(frame: CGRect(x:0, y:  56, width: view.frame.width, height: 2.0))
+        divider.backgroundColor = setDividerColor(ategoryName: categoryName)
+        vFoodStackView.addSubview(divider)
         
         view.addSubview(usebydateTitleLabel)
         usebydateTitleLabel.anchors(topAnchor: vFoodStackView.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 35, left: 15, bottom: 0, right: 0))
@@ -193,5 +197,39 @@ class SetExpirationViewController: UIViewController {
         view.addSubview(okButton)
         okButton.anchors(topAnchor: nil, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor, padding: .init(top: 0, left: 35, bottom: 85, right: 35))
     }
-
+    
+    private func setDividerColor(ategoryName: String) -> UIColor {
+        switch categoryName {
+        case "Vegetable":
+            return vegetableColor
+        case "Fruit":
+            return fruitColor
+        case "Meat":
+            return meatColor
+        case "Fish":
+            return fishColor
+        case "Dairy":
+            return dairyColor
+        case "Condiment":
+            return condimentColor
+        case "Bean":
+            return beanColor
+        case "Cereal":
+            return cerealColor
+        case "Seafood":
+            return seafoodColor
+        case "Seaweed":
+            return seaweedColor
+        case "Noodle":
+            return noodleColor
+        case "Mushroom":
+            return mushroomColor
+        case "Drink":
+            return drinkColor
+        case "Others":
+            return othersColor
+        default:
+            return UIColor.gray
+        }
+    }
 }

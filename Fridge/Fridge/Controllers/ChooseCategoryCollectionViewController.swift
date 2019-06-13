@@ -14,19 +14,33 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
     
     let categories: [String] = ["Vegetable", "Fruit", "Meat", "Fish", "Dairy", "Condiment", "Bean",
                                 "Cereal", "Seafood", "Seaweed", "Noodle/Pasta", "Mushroom", "Drink", "Others"]
+    
+    let foodGroupLabel: UILabel = {
+        let lb = UILabel()
+        lb.translatesAutoresizingMaskIntoConstraints = false
+        lb.font = .regularFont(ofSize: 16)
+        lb.text = "Choose Food Group"
+        lb.textColor = .basicDarkBlue
+        return lb
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .bgGrey
-        navigationItem.title = "Food Group"
+        navigationItem.title = ""
         navigationController?.navigationBar.tintColor = .secondColor
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.basicDarkBlue,
-             NSAttributedString.Key.font: UIFont.mainFont(ofSize: 20)]
+//        self.navigationController?.navigationBar.titleTextAttributes =
+//            [NSAttributedString.Key.foregroundColor: UIColor.basicDarkBlue,
+//             NSAttributedString.Key.font: UIFont.regularFont(ofSize: 18)]
+        
+        view.addSubview(foodGroupLabel)
+        foodGroupLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        foodGroupLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        
 
         self.collectionView!.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        collectionView.contentInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 55, left: 0, bottom: 0, right: 0)
         
         setupNavigation()
     }
@@ -94,47 +108,33 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
     private func bgColorOfCategoryCell(index: Int) -> CGColor {
         switch index {
         case 0:
-            let vegetable = UIColor(red: 146.0/255.0, green: 226.0/255.0, blue: 137.0/255.0, alpha: 1.0)
-            return vegetable.cgColor
+            return vegetableColor.cgColor
         case 1:
-            let fruit = UIColor(red: 255.0/255.0, green: 171.0/255.0, blue: 25.0/255.0, alpha: 1.0)
-            return fruit.cgColor
+            return fruitColor.cgColor
         case 2:
-            let meat = UIColor(red: 241.0/255.0, green: 151.0/255.0, blue: 192.0/255.0, alpha: 1.0)
-            return meat.cgColor
+            return meatColor.cgColor
         case 3:
-            let fish = UIColor(red: 184.0/255.0, green: 212.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-            return fish.cgColor
+            return fishColor.cgColor
         case 4:
-            let dairy = UIColor(red: 254.0/255.0, green: 246.0/255.0, blue: 91.0/255.0, alpha: 1.0)
-            return dairy.cgColor
+            return dairyColor.cgColor
         case 5:
-            let condiment = UIColor(red: 180.0/255.0, green: 159.0/255.0, blue: 220.0/255.0, alpha: 1.0)
-            return condiment.cgColor
+            return condimentColor.cgColor
         case 6:
-            let bean = UIColor(red: 187.0/255.0, green: 103.0/255.0, blue: 69.0/255.0, alpha: 1.0)
-            return bean.cgColor
+            return beanColor.cgColor
         case 7:
-            let cereal = UIColor(red: 193.0/255.0, green: 186.0/255.0, blue: 93.0/255.0, alpha: 1.0)
-            return cereal.cgColor
+            return cerealColor.cgColor
         case 8:
-            let seafood = UIColor(red: 9.0/255.0, green: 173.0/255.0, blue: 199.0/255.0, alpha: 1.0)
-            return seafood.cgColor
+            return seafoodColor.cgColor
         case 9:
-            let seaweed = UIColor(red: 71.0/255.0, green: 179.0/255.0, blue: 156.0/255.0, alpha: 1.0)
-            return seaweed.cgColor
+            return seaweedColor.cgColor
         case 10:
-            let noodle = UIColor(red: 244.0/255.0, green: 80.0/255.0, blue: 77.0/255.0, alpha: 1.0)
-            return noodle.cgColor
+            return noodleColor.cgColor
         case 11:
-            let mushroom = UIColor(red: 218.0/255.0, green: 182.0/255.0, blue: 146.0/255.0, alpha: 1.0)
-            return mushroom.cgColor
+            return mushroomColor.cgColor
         case 12:
-            let drink = UIColor(red: 244.0/255.0, green: 243.0/255.0, blue: 216.0/255.0, alpha: 1.0)
-            return drink.cgColor
+            return drinkColor.cgColor
         case 13:
-            let others = UIColor(red: 255.0/255.0, green: 220.0/255.0, blue: 222.0/255.0, alpha: 1.0)
-            return others.cgColor
+            return othersColor.cgColor
         default:
             return UIColor.gray.cgColor
         }

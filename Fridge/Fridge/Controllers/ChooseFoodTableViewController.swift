@@ -27,7 +27,7 @@ class ChooseFoodTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Choose Food"
+        navigationItem.title = ""
         tableView.backgroundColor = .bgGrey
         tableView.delegate = self
         tableView.dataSource = self
