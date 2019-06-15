@@ -38,6 +38,9 @@
 		B10D237022B1BA2C00C0F9BF /* UIButton+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D236F22B1BA2C00C0F9BF /* UIButton+Image.swift */; };
 		B10D237222B1BAAC00C0F9BF /* UICollectionView+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D237122B1BAAC00C0F9BF /* UICollectionView+Empty.swift */; };
 		B10D237422B208E500C0F9BF /* CategoryColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D237322B208E500C0F9BF /* CategoryColor.swift */; };
+		B10D237622B2EC0200C0F9BF /* CategoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D237522B2EC0200C0F9BF /* CategoryImage.swift */; };
+		B10D237822B2EE8600C0F9BF /* AddNewFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D237722B2EE8600C0F9BF /* AddNewFoodViewController.swift */; };
+		B10D237A22B30C3300C0F9BF /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D237922B30C3300C0F9BF /* CategoryList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +78,9 @@
 		B10D236F22B1BA2C00C0F9BF /* UIButton+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Image.swift"; sourceTree = "<group>"; };
 		B10D237122B1BAAC00C0F9BF /* UICollectionView+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Empty.swift"; sourceTree = "<group>"; };
 		B10D237322B208E500C0F9BF /* CategoryColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryColor.swift; sourceTree = "<group>"; };
+		B10D237522B2EC0200C0F9BF /* CategoryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryImage.swift; sourceTree = "<group>"; };
+		B10D237722B2EE8600C0F9BF /* AddNewFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFoodViewController.swift; sourceTree = "<group>"; };
+		B10D237922B30C3300C0F9BF /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		E5C9FC64C3EFC74EF8B72A0F /* Pods-Fridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridge.release.xcconfig"; path = "Target Support Files/Pods-Fridge/Pods-Fridge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,9 +168,10 @@
 			isa = PBXGroup;
 			children = (
 				B10D2312229F4F7000C0F9BF /* UsebyCardCollectionViewController.swift */,
+				B10D234B22A7AB7100C0F9BF /* ChooseFoodTableViewController.swift */,
 				B10D236B22B0712C00C0F9BF /* DetailViewController.swift */,
 				B10D233C22A71FF700C0F9BF /* ChooseCategoryCollectionViewController.swift */,
-				B10D234B22A7AB7100C0F9BF /* ChooseFoodTableViewController.swift */,
+				B10D237722B2EE8600C0F9BF /* AddNewFoodViewController.swift */,
 				B10D234F22A871B900C0F9BF /* SetExpirationViewController.swift */,
 				B10D233522A1E42600C0F9BF /* ShoppingListTableViewController.swift */,
 				B10D233322A1E3BA00C0F9BF /* MainTabBarController.swift */,
@@ -207,6 +214,8 @@
 			children = (
 				B10D235522A9B8D100C0F9BF /* FoodDictionary.swift */,
 				B10D237322B208E500C0F9BF /* CategoryColor.swift */,
+				B10D237522B2EC0200C0F9BF /* CategoryImage.swift */,
+				B10D237922B30C3300C0F9BF /* CategoryList.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -358,6 +367,7 @@
 			files = (
 				B10D233D22A71FF700C0F9BF /* ChooseCategoryCollectionViewController.swift in Sources */,
 				B10D2302229F423500C0F9BF /* ViewController.swift in Sources */,
+				B10D237A22B30C3300C0F9BF /* CategoryList.swift in Sources */,
 				B10D235022A871B900C0F9BF /* SetExpirationViewController.swift in Sources */,
 				B10D2313229F4F7000C0F9BF /* UsebyCardCollectionViewController.swift in Sources */,
 				B10D236322AF01F900C0F9BF /* FoodItem.swift in Sources */,
@@ -366,6 +376,8 @@
 				B10D233F22A7283900C0F9BF /* CategoryCollectionViewCell.swift in Sources */,
 				B10D2300229F423500C0F9BF /* AppDelegate.swift in Sources */,
 				B10D237222B1BAAC00C0F9BF /* UICollectionView+Empty.swift in Sources */,
+				B10D237622B2EC0200C0F9BF /* CategoryImage.swift in Sources */,
+				B10D237822B2EE8600C0F9BF /* AddNewFoodViewController.swift in Sources */,
 				B10D232922A0D6B700C0F9BF /* UIColor+Scheme.swift in Sources */,
 				B10D236C22B0712C00C0F9BF /* DetailViewController.swift in Sources */,
 				B10D234C22A7AB7100C0F9BF /* ChooseFoodTableViewController.swift in Sources */,

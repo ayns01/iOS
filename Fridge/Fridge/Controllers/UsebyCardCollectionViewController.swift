@@ -13,6 +13,13 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
     
     let reuseIdentifier = "reuseIdentifier"
     var foodItems = [FoodItem]()
+    var filterFoodItems = [FoodItem]()
+    var isFiltering: Bool = false
+    
+    var scView:UIScrollView!
+    let buttonPadding:CGFloat = 10
+    var xOffset:CGFloat = 10
+    var categoryButtons = [UIButton]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +34,50 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
         
         collectionView.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
         
+        setScrollButtons()
+        
         getDataFromFirestore()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(#function)
+    
+    func setScrollButtons() {
+        scView = UIScrollView(frame: CGRect(x: 0, y: 90, width: view.bounds.width, height: 50))
+        view.addSubview(scView)
+        scView.translatesAutoresizingMaskIntoConstraints = false
+        for i in 0..<categories.count {
+            let button = UIButton()
+            categoryButtons.append(button)
+            button.backgroundColor = UIColor.white
+            button.tag = i
+            button.setTitle("\(categories[i])", for: .normal)
+            button.setTitleColor(.basicDarkBlue, for: .normal)
+            button.titleLabel?.font = .regularFont(ofSize: 14)
+            button.frame = CGRect(x: xOffset, y: CGFloat(buttonPadding), width: 90, height: 30)
+            button.layer.cornerRadius = 10
+            xOffset = xOffset + CGFloat(buttonPadding) + button.frame.size.width
+            scView.addSubview(button)
+            button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        }
+        categoryButtons[0].backgroundColor = .secondColor
+        scView.contentSize = CGSize(width: xOffset, height: scView.frame.height)
     }
+    
+    @objc func buttonPressed(sender: UIButton!) {
+        
+        filterFoodItems.removeAll()
+        
+        for i in 0..<categories.count {
+            categoryButtons[i].backgroundColor = .white
+            categoryButtons[sender.tag].backgroundColor = .secondColor
+        }
+        if categories[sender.tag] == "All" {
+            isFiltering = false
+            collectionView.reloadData()
+        }else {
+            isFiltering = true
+            filterContentForCategoryButton(categories[sender.tag])
+        }
+    }
+    
     // MARK: - helper methods
 
     private func getDataFromFirestore() {
@@ -52,6 +97,9 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
                     
                     self.foodItems.append(FoodItem(id: docId, category: category, foodName: foodName, quantity: quantity, usebyDate: date))
                 }
+                
+                self.foodItems.sort(by: { $0.usebyDate.compare($1.usebyDate) == .orderedAscending })
+                
                 self.collectionView.reloadData()
             }
         }
@@ -60,33 +108,33 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
     private func setCategoryImage(category: String) -> UIImage {
         switch category {
         case "Vegetable":
-            return UIImage(imageLiteralResourceName: "vegetable")
+            return vegetableImage
         case "Fruit":
-            return UIImage(imageLiteralResourceName: "fruit")
+            return fruitImage
         case "Meat":
-            return UIImage(imageLiteralResourceName: "meat")
+            return meatImage
         case "Fish":
-            return UIImage(imageLiteralResourceName: "fish")
+            return fishImage
         case "Dairy":
-            return UIImage(imageLiteralResourceName: "dairy")
+            return dairyImage
         case "Condiment":
-            return UIImage(imageLiteralResourceName: "condiment")
+            return condimentImage
         case "Bean":
-            return UIImage(imageLiteralResourceName: "bean")
+            return beanImage
         case "Cereal":
-            return UIImage(imageLiteralResourceName: "cereal")
+            return cerealImage
         case "Seafood":
-            return UIImage(imageLiteralResourceName: "seafood")
+            return seafoodImage
         case "Seaweed":
-            return UIImage(imageLiteralResourceName: "seaweed")
+            return seaweedImage
         case "Mushroom":
-            return UIImage(imageLiteralResourceName: "mushroom")
+            return mushroomImage
         case "Noodle/Pasta":
-            return UIImage(imageLiteralResourceName: "noodle")
+            return noodleImage
         case "Drink":
-            return UIImage(imageLiteralResourceName: "drink")
+            return drinkImage
         default:
-            return UIImage(imageLiteralResourceName: "fish")
+            return fishImage
         }
     }
     
@@ -99,24 +147,51 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
             self.collectionView.restore()
         }
         
+        if isFiltering {
+            return filterFoodItems.count
+        }        
         return foodItems.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UsebyCardCollectionViewCell
-        cell.nameLabel.text = foodItems[indexPath.row].foodName
-        if foodItems[indexPath.row].quantity >= 1 {
-            let quantStr = String(foodItems[indexPath.row].quantity)
-            cell.quantityLabel.text = quantStr
+        
+        let foodCategory: String
+        if isFiltering {
+            foodCategory = filterFoodItems[indexPath.row].category
+        } else {
+            foodCategory = foodItems[indexPath.row].category
         }
+        cell.imageView.image = setCategoryImage(category: foodCategory)
+        
+        let foodName: String
+        if isFiltering {
+            foodName = filterFoodItems[indexPath.row].foodName
+        } else {
+            foodName = foodItems[indexPath.row].foodName
+        }
+        cell.nameLabel.text = foodName
+        
+        let foodQuantity: String
+        if isFiltering {
+                foodQuantity = String(filterFoodItems[indexPath.row].quantity)
+        } else {
+                foodQuantity = String(foodItems[indexPath.row].quantity)
+        }
+        cell.quantityLabel.text = foodQuantity
+        
+        let foodDate: Date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM.dd.yyyy"
-        cell.usebyDetailDateLabel.text = dateFormatter.string(from: foodItems[indexPath.row].usebyDate)
-        cell.imageView.image = setCategoryImage(category: foodItems[indexPath.row].category)
+        if isFiltering {
+            foodDate = filterFoodItems[indexPath.row].usebyDate
+        } else {
+            foodDate = foodItems[indexPath.row].usebyDate
+        }
+        cell.usebyDetailDateLabel.text = dateFormatter.string(from: foodDate)
         
         let dateRangeStart = Date()
-        let dateRangeEnd = foodItems[indexPath.row].usebyDate
-        let components = Calendar.current.dateComponents([.day], from: dateRangeStart, to: dateRangeEnd)
+        let components = Calendar.current.dateComponents([.day], from: dateRangeStart, to: foodDate)
 
         cell.expirationCountDateLabel.text = "\(components.day ?? 0) days"
         let day = components.day ?? 0
@@ -137,18 +212,53 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
     // MARK: - UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let detailVC = DetailViewController()
-        detailVC.categoryNameLabel.text = foodItems[indexPath.row].category
-        detailVC.imageView.image = setCategoryImage(category: foodItems[indexPath.row].category)
-        detailVC.foodNameLabel.text = foodItems[indexPath.row].foodName
+        
+        let foodCategory: String
+        if isFiltering {
+            foodCategory = filterFoodItems[indexPath.row].category
+        } else {
+            foodCategory = foodItems[indexPath.row].category
+        }
+        detailVC.categoryNameLabel.text = foodCategory
+        detailVC.imageView.image = setCategoryImage(category: foodCategory)
+        
+        let foodName: String
+        if isFiltering {
+            foodName = filterFoodItems[indexPath.row].foodName
+        } else {
+            foodName = foodItems[indexPath.row].foodName
+        }
+        detailVC.foodNameLabel.text = foodName
+        
+        let foodDate: Date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM.dd.yyyy"
-        let dateStr = dateFormatter.string(from: foodItems[indexPath.row].usebyDate)
+        if isFiltering {
+            foodDate = filterFoodItems[indexPath.row].usebyDate
+        } else {
+            foodDate = foodItems[indexPath.row].usebyDate
+        }
+        let dateStr = dateFormatter.string(from: foodDate)
         let date = dateFormatter.date(from: dateStr) ?? Date()
         detailVC.usebyDatePicker.date = date
-        detailVC.quantityLabel.text = String(foodItems[indexPath.row].quantity)
-        detailVC.docId = foodItems[indexPath.row].id
+        
+        let foodQuantity: String
+        if isFiltering {
+            foodQuantity = String(filterFoodItems[indexPath.row].quantity)
+        } else {
+            foodQuantity = String(foodItems[indexPath.row].quantity)
+        }
+        detailVC.quantityLabel.text = String(foodQuantity)
+        
+        let foodId: String
+        if isFiltering {
+            foodId = String(filterFoodItems[indexPath.row].id)
+        } else {
+            foodId = String(foodItems[indexPath.row].id)
+        }
+        detailVC.docId = foodId
+        
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
@@ -167,6 +277,31 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: spacing, left: padding, bottom: spacing, right: padding)
+    }
+    
+    // MARK: - Helper methods
+    
+    func filterContentForCategoryButton(_ category: String) {
+        let db = Firestore.firestore()
+        db.collection("usebyInfo").whereField("category", isEqualTo: category)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let docId = document.documentID
+                        let category = document.get("category") as? String ?? ""
+                        let foodName = document.get("foodName") as? String ?? ""
+                        let quantity = document.get("quantity") as? Int ?? 1
+                        let usebyDateTimestamp = document.get("usebyDate") as? Timestamp ?? Timestamp()
+                        let date = usebyDateTimestamp.dateValue()
+                        self.filterFoodItems.append(FoodItem(id: docId, category: category, foodName: foodName, quantity: quantity, usebyDate: date))
+                        
+                    }
+                    
+                    self.collectionView.reloadData()
+                }
+        }
     }
 
 }

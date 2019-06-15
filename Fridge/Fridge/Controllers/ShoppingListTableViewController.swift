@@ -12,10 +12,18 @@ class ShoppingListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .bgGrey
+        tableView.backgroundColor = .noteColor
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.basicDarkBlue,
              NSAttributedString.Key.font: UIFont.mainFont(ofSize: 20)]
+        
+        navigationItem.title = "Fridge"
+        
+        setupNavigation()
+    }
+    
+    fileprivate func setupNavigation() {
+        
     }
 
     // MARK: - Table view data source

@@ -23,5 +23,7 @@ extension UIColor {
     static let firstColor = UIColor(red: 246/255, green: 211/255, blue: 63/255, alpha: 1.0)
     
     static let secondColor = UIColor(red: 76/255, green: 210/255, blue: 168/255, alpha: 1.0)
+    
+    static let noteColor = UIColor(red: 250/255, green: 243/255, blue: 196/255, alpha: 1.0)
         
 }

@@ -99,6 +99,8 @@ class SetExpirationViewController: UIViewController {
         categoryNameLabel.text = categoryName
         foodNameLabel.text = foodName
         
+        navigationController?.navigationBar.tintColor = .secondColor
+        
         setUpUI()
         
         minusButt.addTarget(self, action: #selector(minusQuantity), for: .touchUpInside)
@@ -178,13 +180,13 @@ class SetExpirationViewController: UIViewController {
         vFoodStackView.addSubview(divider)
         
         view.addSubview(usebydateTitleLabel)
-        usebydateTitleLabel.anchors(topAnchor: vFoodStackView.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 35, left: 15, bottom: 0, right: 0))
+        usebydateTitleLabel.anchors(topAnchor: vFoodStackView.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 45, left: 15, bottom: 0, right: 0))
         
         view.addSubview(usebyDatePicker)
         usebyDatePicker.anchors(topAnchor: usebydateTitleLabel.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: nil, padding: .init(top: 5, left: 0, bottom: 0, right: 0))
         
         view.addSubview(quantityTitleLabel)
-        quantityTitleLabel.anchors(topAnchor: usebyDatePicker.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 35, left: 15, bottom: 0, right: 0))
+        quantityTitleLabel.anchors(topAnchor: usebyDatePicker.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: nil, bottomAnchor: nil, padding: .init(top: 45, left: 15, bottom: 0, right: 0))
         
         let hQuantityStackView = UIStackView(arrangedSubviews: [minusButt, quantityLabel, plusButt])
         hQuantityStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -192,7 +194,7 @@ class SetExpirationViewController: UIViewController {
         hQuantityStackView.axis = .horizontal
         hQuantityStackView.spacing = 10
         view.addSubview(hQuantityStackView)
-        hQuantityStackView.anchors(topAnchor: usebyDatePicker.bottomAnchor, leadingAnchor: nil, trailingAnchor: view.trailingAnchor, bottomAnchor: nil, padding: .init(top: 30, left: 0, bottom: 0, right: 15))
+        hQuantityStackView.anchors(topAnchor: usebyDatePicker.bottomAnchor, leadingAnchor: nil, trailingAnchor: view.trailingAnchor, bottomAnchor: nil, padding: .init(top: 45, left: 0, bottom: 0, right: 15))
         
         view.addSubview(okButton)
         okButton.anchors(topAnchor: nil, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor, padding: .init(top: 0, left: 35, bottom: 85, right: 35))

@@ -95,13 +95,16 @@ class ChooseFoodTableViewController: UITableViewController {
     }
     
     @objc func addButtonItemClicked() {
-        print("AddButton Clicked")
+        let addNewFoodVC = AddNewFoodViewController()
+        addNewFoodVC.categoryName = categoryName
+//        let addNewFoodNVC = UINavigationController(rootViewController: addNewFoodVC)
+//         self.present(addNewFoodVC, animated: true, completion: nil)
+        navigationController?.pushViewController(addNewFoodVC, animated: true)
+        
     }
     
     private func setupSearchBar() {
-//        navigationItem.searchController = self.searchController // From iOS 11
         navigationItem.hidesSearchBarWhenScrolling = false
-        // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Food"
@@ -155,41 +158,6 @@ class ChooseFoodTableViewController: UITableViewController {
         
         navigationController?.pushViewController(setExpirationVC, animated: true)
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
     
     // MARK: - Private instance methods
     
@@ -200,7 +168,6 @@ class ChooseFoodTableViewController: UITableViewController {
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filterFoods = everyFoods.filter({( food : String) -> Bool in
-            print(food)
             return food.lowercased().contains(searchText.lowercased())
         })
 

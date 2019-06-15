@@ -29,14 +29,10 @@ class ChooseCategoryCollectionViewController: BaseCollectionViewController, UICo
         collectionView.backgroundColor = .bgGrey
         navigationItem.title = ""
         navigationController?.navigationBar.tintColor = .secondColor
-//        self.navigationController?.navigationBar.titleTextAttributes =
-//            [NSAttributedString.Key.foregroundColor: UIColor.basicDarkBlue,
-//             NSAttributedString.Key.font: UIFont.regularFont(ofSize: 18)]
         
         view.addSubview(foodGroupLabel)
         foodGroupLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         foodGroupLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        
 
         self.collectionView!.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         

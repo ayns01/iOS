@@ -62,7 +62,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             let vc =  ChooseCategoryCollectionViewController()
             let addNVC = UINavigationController(rootViewController: vc)
             
-//            vc.modalPresentationStyle = .overFullScreen
             self.present(addNVC, animated: true, completion: nil)
             return false
         }
