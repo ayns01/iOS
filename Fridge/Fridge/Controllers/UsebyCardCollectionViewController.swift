@@ -40,9 +40,14 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
     }
     
     func setScrollButtons() {
-        scView = UIScrollView(frame: CGRect(x: 0, y: 90, width: view.bounds.width, height: 50))
+        scView = UIScrollView()
         view.addSubview(scView)
+        scView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        scView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        scView.heightAnchor.constraint(equalToConstant: 45).isActive = true
         scView.translatesAutoresizingMaskIntoConstraints = false
+        scView.showsHorizontalScrollIndicator = false
         for i in 0..<categories.count {
             let button = UIButton()
             categoryButtons.append(button)
@@ -52,7 +57,7 @@ class UsebyCardCollectionViewController: BaseCollectionViewController, UICollect
             button.setTitleColor(.basicDarkBlue, for: .normal)
             button.titleLabel?.font = .regularFont(ofSize: 14)
             button.frame = CGRect(x: xOffset, y: CGFloat(buttonPadding), width: 90, height: 30)
-            button.layer.cornerRadius = 10
+            button.layer.cornerRadius = 6
             xOffset = xOffset + CGFloat(buttonPadding) + button.frame.size.width
             scView.addSubview(button)
             button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)

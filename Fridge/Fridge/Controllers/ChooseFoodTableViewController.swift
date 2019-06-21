@@ -97,8 +97,6 @@ class ChooseFoodTableViewController: UITableViewController {
     @objc func addButtonItemClicked() {
         let addNewFoodVC = AddNewFoodViewController()
         addNewFoodVC.categoryName = categoryName
-//        let addNewFoodNVC = UINavigationController(rootViewController: addNewFoodVC)
-//         self.present(addNewFoodVC, animated: true, completion: nil)
         navigationController?.pushViewController(addNewFoodVC, animated: true)
         
     }

@@ -30,7 +30,6 @@
 		B10D235622A9B8D100C0F9BF /* FoodDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D235522A9B8D100C0F9BF /* FoodDictionary.swift */; };
 		B10D235822AA4C8400C0F9BF /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D235722AA4C8400C0F9BF /* UIView+ConstraintLayout.swift */; };
 		B10D235F22AB897100C0F9BF /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D235E22AB897100C0F9BF /* Lato-Light.ttf */; };
-		B10D236122ACB22C00C0F9BF /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D236022ACB22C00C0F9BF /* Lato-Regular.ttf */; };
 		B10D236322AF01F900C0F9BF /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D236222AF01F900C0F9BF /* FoodItem.swift */; };
 		B10D236522AF1FF000C0F9BF /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D236422AF1FF000C0F9BF /* Lato-Heavy.ttf */; };
 		B10D236722AF205700C0F9BF /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D236622AF205700C0F9BF /* Lato-Bold.ttf */; };
@@ -41,6 +40,7 @@
 		B10D237622B2EC0200C0F9BF /* CategoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D237522B2EC0200C0F9BF /* CategoryImage.swift */; };
 		B10D237822B2EE8600C0F9BF /* AddNewFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D237722B2EE8600C0F9BF /* AddNewFoodViewController.swift */; };
 		B10D237A22B30C3300C0F9BF /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D237922B30C3300C0F9BF /* CategoryList.swift */; };
+		B10D237E22B8568400C0F9BF /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B10D237D22B8568400C0F9BF /* Lato-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +70,6 @@
 		B10D235522A9B8D100C0F9BF /* FoodDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDictionary.swift; sourceTree = "<group>"; };
 		B10D235722AA4C8400C0F9BF /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
 		B10D235E22AB897100C0F9BF /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
-		B10D236022ACB22C00C0F9BF /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../Downloads/lato/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		B10D236222AF01F900C0F9BF /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		B10D236422AF1FF000C0F9BF /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Heavy.ttf"; sourceTree = "<group>"; };
 		B10D236622AF205700C0F9BF /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		B10D237522B2EC0200C0F9BF /* CategoryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryImage.swift; sourceTree = "<group>"; };
 		B10D237722B2EE8600C0F9BF /* AddNewFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFoodViewController.swift; sourceTree = "<group>"; };
 		B10D237922B30C3300C0F9BF /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
+		B10D237D22B8568400C0F9BF /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../Downloads/lato 2/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		E5C9FC64C3EFC74EF8B72A0F /* Pods-Fridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridge.release.xcconfig"; path = "Target Support Files/Pods-Fridge/Pods-Fridge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				B10D235E22AB897100C0F9BF /* Lato-Light.ttf */,
-				B10D236022ACB22C00C0F9BF /* Lato-Regular.ttf */,
+				B10D237D22B8568400C0F9BF /* Lato-Regular.ttf */,
 				B10D236422AF1FF000C0F9BF /* Lato-Heavy.ttf */,
 				B10D236622AF205700C0F9BF /* Lato-Bold.ttf */,
 				B10D22FE229F423500C0F9BF /* Fridge */,
@@ -290,8 +290,8 @@
 			files = (
 				B10D230A229F423600C0F9BF /* LaunchScreen.storyboard in Resources */,
 				B10D2307229F423600C0F9BF /* Assets.xcassets in Resources */,
-				B10D236122ACB22C00C0F9BF /* Lato-Regular.ttf in Resources */,
 				B10D2305229F423500C0F9BF /* Main.storyboard in Resources */,
+				B10D237E22B8568400C0F9BF /* Lato-Regular.ttf in Resources */,
 				B10D236522AF1FF000C0F9BF /* Lato-Heavy.ttf in Resources */,
 				B10D233A22A5C7C100C0F9BF /* GoogleService-Info.plist in Resources */,
 				B10D236722AF205700C0F9BF /* Lato-Bold.ttf in Resources */,
@@ -539,6 +539,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W49D464DKJ;
 				INFOPLIST_FILE = Fridge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -558,6 +559,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W49D464DKJ;
 				INFOPLIST_FILE = Fridge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
