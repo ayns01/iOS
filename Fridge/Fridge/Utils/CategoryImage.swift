@@ -33,5 +33,3 @@ let mushroomImage = UIImage(imageLiteralResourceName: "mushroom")
 let noodleImage = UIImage(imageLiteralResourceName: "noodle")
 
 let drinkImage = UIImage(imageLiteralResourceName: "drink")
-
-//let Image = UIImage(imageLiteralResourceName: "fish")
