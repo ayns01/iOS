@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "gameground.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "enemy1Weapon@2x.png",
       "scale" : "2x"
     },
     {
