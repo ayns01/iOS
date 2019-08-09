@@ -19,6 +19,8 @@
 		B12B9CBA22F96CBA0041DCBE /* ShootingGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12B9CB922F96CBA0041DCBE /* ShootingGameUITests.swift */; };
 		B12B9CC822F979B30041DCBE /* Starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CC722F979B30041DCBE /* Starfield.sks */; };
 		B12B9CE622FD49980041DCBE /* music_funky_walk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CE522FD49980041DCBE /* music_funky_walk.mp3 */; };
+		B12B9CE822FE12AA0041DCBE /* get_sweets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CE722FE12AA0041DCBE /* get_sweets.mp3 */; };
+		B12B9CEA22FE16000041DCBE /* laser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CE922FE16000041DCBE /* laser.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		B12B9CBB22F96CBA0041DCBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B12B9CC722F979B30041DCBE /* Starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Starfield.sks; sourceTree = "<group>"; };
 		B12B9CE522FD49980041DCBE /* music_funky_walk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_funky_walk.mp3; sourceTree = "<group>"; };
+		B12B9CE722FE12AA0041DCBE /* get_sweets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = get_sweets.mp3; sourceTree = "<group>"; };
+		B12B9CE922FE16000041DCBE /* laser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laser.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 		B12B9C9222F96CB80041DCBE /* ShootingGame */ = {
 			isa = PBXGroup;
 			children = (
+				B12B9CE922FE16000041DCBE /* laser.mp3 */,
+				B12B9CE722FE12AA0041DCBE /* get_sweets.mp3 */,
 				B12B9CE522FD49980041DCBE /* music_funky_walk.mp3 */,
 				B12B9C9322F96CB80041DCBE /* AppDelegate.swift */,
 				B12B9C9522F96CB80041DCBE /* GameScene.sks */,
@@ -246,10 +252,12 @@
 			files = (
 				B12B9CE622FD49980041DCBE /* music_funky_walk.mp3 in Resources */,
 				B12B9CC822F979B30041DCBE /* Starfield.sks in Resources */,
+				B12B9CEA22FE16000041DCBE /* laser.mp3 in Resources */,
 				B12B9C9F22F96CB80041DCBE /* Main.storyboard in Resources */,
 				B12B9C9622F96CB80041DCBE /* GameScene.sks in Resources */,
 				B12B9CA122F96CBA0041DCBE /* Assets.xcassets in Resources */,
 				B12B9CA422F96CBA0041DCBE /* LaunchScreen.storyboard in Resources */,
+				B12B9CE822FE12AA0041DCBE /* get_sweets.mp3 in Resources */,
 				B12B9C9822F96CB80041DCBE /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

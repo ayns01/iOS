@@ -18,18 +18,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var touchLocation: CGPoint!
     
     //変数に配列で４種類の名前を入れる。
-    var enemyArray = ["candy", "doughnut", "enemy3", "enemy4"]
+    var enemyArray = ["candy", "doughnut", "macaron", "icecream"]
     
     //Timerクラスを使うためのプロパティを作成。
     var getTimer: Timer!
-    
-    //サウンド再生用のプロパティを作成。
-//    let explosionSound = SKAction.playSoundFileNamed("explosion.wav", waitForCompletion: false)
     
     //BGM用のパラメーターを作成。
     var backgroundMusic = SKAudioNode()
     //BGMで流れるゲーム音楽。
     let musicURL = Bundle.main.url(forResource: "music_funky_walk", withExtension: "mp3")
+    
+    //お菓子をゲットした時の効果音。
+    let sweetSound = SKAction.playSoundFileNamed("laser.mp3", waitForCompletion: false)
+    
     
     //衝突判定で使うビットを構造体で作る。
     struct PhysicsCategories {
@@ -93,7 +94,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy.setScale(0.2)
         
         //指定して範囲内で乱数を生成する。
-//        let randomDistribute = GKRandomDistribution(lowestValue: 0, highestValue: Int((self.size.height) - enemy.size.height))
         let randomDistribute = GKRandomSource.sharedRandom().nextInt(upperBound: Int((frame.size.width)))
         
         //出現位置を設定する。
@@ -121,12 +121,55 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createStarDust() {
         // スターダストの生成
         if let particles = SKEmitterNode(fileNamed: "Starfield") {
-            particles.position = CGPoint(x: frame.maxX, y: UIScreen.main.bounds.height * 0.05)
+            particles.position = CGPoint(x: frame.maxX / 2, y: frame.maxY)
             particles.advanceSimulationTime(60)
             particles.zPosition = 0
             addChild(particles)
         }
     }
+    
+    func createLaser() {
+        
+        //SpriteNodeを作成する
+        let laser = SKSpriteNode(imageNamed: "enemy1Weapon")
+        
+        //物理ボディを設定。
+        laser.physicsBody = SKPhysicsBody(circleOfRadius: max(laser.size.width / 2, laser.size.height / 2))
+        
+        //物理ボディにカテゴリマスクを設定する。
+        laser.physicsBody!.categoryBitMask = PhysicsCategories.laser
+        
+        //物理ボディに衝突マスクを設定する。
+        laser.physicsBody!.collisionBitMask = PhysicsCategories.none
+        
+        //物理ボディにコンタクトテストマスクを設定する。
+        laser.physicsBody!.contactTestBitMask = PhysicsCategories.enemy
+        
+        //重なり順番を5に設定する。
+        laser.zPosition = 5
+        
+        //名前をつける。
+        laser.name = "laser"
+        
+        //ポジションをplayerのすぐ上にする。
+        laser.position = CGPoint(x: player.position.x, y: player.position.y + player.size.height * 0.8)
+        
+        //GameSceneに追加する。
+        addChild(laser)
+        
+        // 1秒間隔でlaserの高さ分Y軸方向に移動する。
+        let moveLaser = SKAction.moveTo(y: self.size.height + laser.size.height, duration: 1)
+        
+        //GameSceneから削除。
+        let moveReset = SKAction.removeFromParent()
+        
+        //順番にアクションを実行するsequenceを作る。
+        let moveSequence = SKAction.sequence([sweetSound, moveLaser, moveReset])
+        
+        //アクショッンを実行する。
+        laser.run(moveSequence)
+    }
+
     
     func createPlayer() {
         let playerTexture = SKTexture(imageNamed: "player")
@@ -167,6 +210,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
      */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        //最初のタッチがあったら以降の処理を実行します、なければ処理を抜けます。
+        guard touches.first != nil else { return }
+        
+        //laserを作成する関数を呼び出す。
+        createLaser()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
