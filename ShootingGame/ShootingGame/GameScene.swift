@@ -20,6 +20,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //変数に配列で４種類の名前を入れる。
     var enemyArray = ["candy", "doughnut", "macaron", "icecream"]
     
+    //スコア。
+    let scoreLabel = SKLabelNode()
+    var score = 0
+    
+    
+    
     //Timerクラスを使うためのプロパティを作成。
     var getTimer: Timer!
     
@@ -28,8 +34,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //BGMで流れるゲーム音楽。
     let musicURL = Bundle.main.url(forResource: "music_funky_walk", withExtension: "mp3")
     
-    //お菓子をゲットした時の効果音。
+    //レーザー音。
     let sweetSound = SKAction.playSoundFileNamed("laser.mp3", waitForCompletion: false)
+    
+    // 爆発音。
+    let explosionSound = SKAction.playSoundFileNamed("get_sweets.mp3", waitForCompletion: false)
     
     
     //衝突判定で使うビットを構造体で作る。
@@ -63,6 +72,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundMusic = SKAudioNode(url: musicURL!)
         //GameSceneに追加する。
         addChild(backgroundMusic)
+        
+        scoreLabel.position = CGPoint(x: frame.size.width * 0.15, y: frame.size.height * 0.88)
+        scoreLabel.zPosition = 10
+        scoreLabel.fontColor = #colorLiteral(red: 0.5855464339, green: 0.9720957875, blue: 0.6153635979, alpha: 1)
+        scoreLabel.fontSize = 20
+        scoreLabel.fontName = "AvenirNext-Bold"
+        scoreLabel.horizontalAlignmentMode = .left
+        scoreLabel.text = String(score)
+        addChild(scoreLabel)
+    }
+    
+    func killEnemy() {
+        score += 1
+        scoreLabel.text = String(score)
     }
     
     @objc func createEnemy() {
@@ -91,7 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         enemy.name = "enemy"
         
-        enemy.setScale(0.2)
+        enemy.setScale(0.15)
         
         //指定して範囲内で乱数を生成する。
         let randomDistribute = GKRandomSource.sharedRandom().nextInt(upperBound: Int((frame.size.width)))
@@ -172,7 +195,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     func createPlayer() {
-        let playerTexture = SKTexture(imageNamed: "player")
+        let playerTexture = SKTexture(imageNamed: "rocket")
         //SpriteNodeを作成する
         player = SKSpriteNode(texture: playerTexture)
         
@@ -191,13 +214,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody!.contactTestBitMask = PhysicsCategories.enemy
         
         
-        player.setScale(0.5)
+        player.setScale(0.2)
         
         player.zPosition = 10
         //名前をつける。
         player.name = "player"
         //最初の出現位置を決める。
-        player.position = CGPoint(x: frame.minX + 55, y: UIScreen.main.bounds.height * 0.05)
+        player.position = CGPoint(x: frame.minX + 55, y: UIScreen.main.bounds.height * 0.08)
         
         //GameSceneに追加する。
         addChild(player)
@@ -222,8 +245,60 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             touchLocation = touch.location(in: self)
             player.position.x = touchLocation.x
-            player.position.y = touchLocation.y
+//            player.position.y = touchLocation.y
         }
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        //衝突した2つの物体のどちらかの名前が"laser"であるか判定する。
+        if contact.bodyA.node?.name == "laser" || contact.bodyB.node?.name == "laser" {
+            
+            //bodyAの名前が"enemy"のとき。
+            if contact.bodyA.node?.name == "enemy" {
+                
+                //爆発の画像を読み込む。
+                if let explosion = SKEmitterNode(fileNamed: "ExplosionEffect") {
+                    
+                    //爆発の画像をenemyの位置に表示する。
+                    explosion.position = (contact.bodyA.node?.position)!
+                    
+                    explosion.zPosition = 10
+                    
+                    //両方の物体をGameSceneから削除する。
+                    contact.bodyA.node?.removeFromParent()
+                    contact.bodyB.node?.removeFromParent()
+                    
+                    //GameSceneに追加する。
+                    addChild(explosion)
+                }
+                
+            } else {
+                
+                //爆発の画像を読み込む。
+                if let explosion = SKEmitterNode(fileNamed: "ExplosionEffect") {
+                    
+                    //爆発の画像をenemyの位置に表示する。
+                    explosion.position = (contact.bodyB.node?.position)!
+                    
+                    //両方の物体をGameSceneから削除する。
+                    contact.bodyA.node?.removeFromParent()
+                    contact.bodyB.node?.removeFromParent()
+                    
+                    //GameSceneに追加する。
+                    addChild(explosion)
+                }
+            }
+            
+            
+            //爆発した時のサウンドを再生する。
+            run(explosionSound)
+            
+            killEnemy()
+            
+            return
+        }
+        
+        guard contact.bodyA.node != nil && contact.bodyB.node != nil else { return }
     }
 
 }

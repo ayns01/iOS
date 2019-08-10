@@ -21,6 +21,8 @@
 		B12B9CE622FD49980041DCBE /* music_funky_walk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CE522FD49980041DCBE /* music_funky_walk.mp3 */; };
 		B12B9CE822FE12AA0041DCBE /* get_sweets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CE722FE12AA0041DCBE /* get_sweets.mp3 */; };
 		B12B9CEA22FE16000041DCBE /* laser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CE922FE16000041DCBE /* laser.mp3 */; };
+		B12B9CEF22FE35360041DCBE /* ExplosionEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CED22FE35360041DCBE /* ExplosionEffect.sks */; };
+		B12B9CF022FE35360041DCBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CEE22FE35360041DCBE /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		B12B9CE522FD49980041DCBE /* music_funky_walk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_funky_walk.mp3; sourceTree = "<group>"; };
 		B12B9CE722FE12AA0041DCBE /* get_sweets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = get_sweets.mp3; sourceTree = "<group>"; };
 		B12B9CE922FE16000041DCBE /* laser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laser.mp3; sourceTree = "<group>"; };
+		B12B9CED22FE35360041DCBE /* ExplosionEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = ExplosionEffect.sks; path = ../ExplosionEffect.sks; sourceTree = "<group>"; };
+		B12B9CEE22FE35360041DCBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 		B12B9C8722F96CB80041DCBE = {
 			isa = PBXGroup;
 			children = (
+				B12B9CEE22FE35360041DCBE /* Assets.xcassets */,
 				B12B9C9222F96CB80041DCBE /* ShootingGame */,
 				B12B9CAD22F96CBA0041DCBE /* ShootingGameTests */,
 				B12B9CB822F96CBA0041DCBE /* ShootingGameUITests */,
@@ -111,6 +116,7 @@
 		B12B9C9222F96CB80041DCBE /* ShootingGame */ = {
 			isa = PBXGroup;
 			children = (
+				B12B9CED22FE35360041DCBE /* ExplosionEffect.sks */,
 				B12B9CE922FE16000041DCBE /* laser.mp3 */,
 				B12B9CE722FE12AA0041DCBE /* get_sweets.mp3 */,
 				B12B9CE522FD49980041DCBE /* music_funky_walk.mp3 */,
@@ -252,6 +258,8 @@
 			files = (
 				B12B9CE622FD49980041DCBE /* music_funky_walk.mp3 in Resources */,
 				B12B9CC822F979B30041DCBE /* Starfield.sks in Resources */,
+				B12B9CF022FE35360041DCBE /* Assets.xcassets in Resources */,
+				B12B9CEF22FE35360041DCBE /* ExplosionEffect.sks in Resources */,
 				B12B9CEA22FE16000041DCBE /* laser.mp3 in Resources */,
 				B12B9C9F22F96CB80041DCBE /* Main.storyboard in Resources */,
 				B12B9C9622F96CB80041DCBE /* GameScene.sks in Resources */,
