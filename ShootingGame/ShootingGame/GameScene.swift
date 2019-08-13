@@ -15,15 +15,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var enemy: SKSpriteNode!
     
+    var boss: SKSpriteNode!
+    
     var touchLocation: CGPoint!
     
-    //変数に配列で４種類の名前を入れる。
-    var enemyArray = ["candy", "doughnut", "macaron", "icecream"]
+    var sweetArray = ["candy", "doughnut", "macaron", "icecream"]
     
     //スコア。
     let scoreLabel = SKLabelNode()
     var score = 0
     
+    // ボスを倒すために出すレーザーの回数。
+    var bossKillNumber = 5
     
     
     //Timerクラスを使うためのプロパティを作成。
@@ -46,7 +49,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         static let none: UInt32 = 0
         static let player: UInt32 = 0x1 << 1 //1
         static let laser: UInt32 = 0x1 << 2 //2
-        static let enemy: UInt32 = 0x1 << 3 //3
+        static let enemy: UInt32 = 0x1 << 3 //4
+        static let boss: UInt32 = 0x1 << 4 //8
     }
 
    
@@ -62,6 +66,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createStarDust()
         
         createPlayer()
+        
+        createBossEnemy()
         
         //0.5秒間隔でcreateEnemy()を呼び出す。
         if getTimer == nil {
@@ -90,10 +96,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func createEnemy() {
         //配列の中身をランダムに並び替える。
-        enemyArray = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: enemyArray) as! [String]
+        sweetArray = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: sweetArray) as! [String]
         
         //テクスチャの名前を配列の０番目に指定する。
-        let enemyTexture = SKTexture(imageNamed: enemyArray[0])
+        let enemyTexture = SKTexture(imageNamed: sweetArray[0])
         
         //SpriteNodeを作成する。
         enemy = SKSpriteNode(texture: enemyTexture)
@@ -189,7 +195,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //順番にアクションを実行するsequenceを作る。
         let moveSequence = SKAction.sequence([sweetSound, moveLaser, moveReset])
         
-        //アクショッンを実行する。
+        //アクションを実行する。
         laser.run(moveSequence)
     }
 
@@ -213,7 +219,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // 衝突したことにより発生する処理を行いたいとき。
         player.physicsBody!.contactTestBitMask = PhysicsCategories.enemy
         
-        
         player.setScale(0.2)
         
         player.zPosition = 10
@@ -224,6 +229,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //GameSceneに追加する。
         addChild(player)
+    }
+    
+    func createBossEnemy() {
+        let bossTexture = SKTexture(imageNamed: "devil")
+        
+        boss = SKSpriteNode(texture: bossTexture)
+        
+        boss.physicsBody = SKPhysicsBody(circleOfRadius: max(boss.size.width / 2, boss.size.height / 2))
+        
+        boss.physicsBody!.categoryBitMask = PhysicsCategories.boss
+        
+        boss.physicsBody!.collisionBitMask = PhysicsCategories.laser
+        
+        boss.physicsBody!.contactTestBitMask = PhysicsCategories.laser
+        
+        boss.setScale(0.2)
+        
+        boss.zPosition = 10
+        
+        boss.name = "enemyBoss"
+
+        boss.position = CGPoint(x: frame.minX + 55, y: UIScreen.main.bounds.height)
+        
+        addChild(boss)
+        
+        let moveBossPath = UIBezierPath()
+        moveBossPath.move(to: .zero)
+        moveBossPath.addCurve(to: CGPoint(x: frame.maxX - boss.size.width, y: 0),
+                              controlPoint1: CGPoint(x: frame.minX + 100, y: UIScreen.main.bounds.height * 0.1), controlPoint2: CGPoint(x: frame.minX + 200, y: UIScreen.main.bounds.height * 0.3))
+        
+        let movement = SKAction.follow(moveBossPath.cgPath, asOffset: true, orientToPath: true, speed: 10)
+        
+        let moveReset = SKAction.removeFromParent()
+        
+        let moveSequence = SKAction.sequence([sweetSound, movement, moveReset])
+        
+        boss.run(moveSequence)
     }
     
     // 画面にタッチした時に呼び出される部分。
@@ -272,7 +314,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     addChild(explosion)
                 }
                 
-            } else {
+            } else if contact.bodyB.node?.name == "enemy" {
                 
                 //爆発の画像を読み込む。
                 if let explosion = SKEmitterNode(fileNamed: "ExplosionEffect") {
@@ -286,6 +328,58 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     //GameSceneに追加する。
                     addChild(explosion)
+                }
+            }
+            
+            if contact.bodyA.node?.name == "enemyBoss" {
+                
+                bossKillNumber -= 1
+                if let explosion = SKEmitterNode(fileNamed: "ExplosionBossEffect") {
+                    
+                    explosion.position = (contact.bodyB.node?.position)!
+                    
+                    contact.bodyB.node?.removeFromParent()
+                    
+                    addChild(explosion)
+                }
+                
+                if bossKillNumber == 0 {
+                    
+                    if let explosion = SKEmitterNode(fileNamed: "ExplosionBossDefeatEffect") {
+                        
+                        explosion.position = (contact.bodyA.node?.position)!
+                        
+                        contact.bodyA.node?.removeFromParent()
+                        contact.bodyB.node?.removeFromParent()
+                        
+                        addChild(explosion)
+                    }
+                }
+                
+            }else if contact.bodyB.node?.name == "enemyBoss" {
+                
+                bossKillNumber -= 1
+                
+                if let explosion = SKEmitterNode(fileNamed: "ExplosionBossEffect") {
+                    
+                    explosion.position = (contact.bodyB.node?.position)!
+                    
+                    contact.bodyA.node?.removeFromParent()
+                    
+                    addChild(explosion)
+                }
+                
+                if bossKillNumber == 0 {
+                    
+                    if let explosion = SKEmitterNode(fileNamed: "ExplosionBossDefeatEffect") {
+                        
+                        explosion.position = (contact.bodyB.node?.position)!
+                        
+                        contact.bodyA.node?.removeFromParent()
+                        contact.bodyB.node?.removeFromParent()
+                        
+                        addChild(explosion)
+                    }
                 }
             }
             
