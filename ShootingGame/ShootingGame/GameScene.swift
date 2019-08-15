@@ -9,6 +9,15 @@
 import SpriteKit
 import GameplayKit
 
+//衝突判定で使うビットを構造体で作る。
+struct PhysicsCategories {
+    static let none: UInt32 = 0
+    static let player: UInt32 = 0x1 << 1 //1
+    static let laser: UInt32 = 0x1 << 2 //2
+    static let enemy: UInt32 = 0x1 << 3 //4
+    static let boss: UInt32 = 0x1 << 4 //8
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     //ゲーム中にplayerを参照する必要があるのでplayerのパラメーターを作成します
     var player: SKSpriteNode!
@@ -21,13 +30,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var sweetArray = ["candy", "doughnut", "macaron", "icecream"]
     
+    let waves = Bundle.main.decode([Wave].self, from: "waves.json")
+    let enemyTypes = Bundle.main.decode([EnemyType].self, from: "enemy-types.json")
+    
+    var isPlayerAlive = true
+    var levelNumber = 0
+    var waveNumber = 0
+    
+    let positions = Array(stride(from: 0, through: 360, by: 40))
+    
     //スコア。
     let scoreLabel = SKLabelNode()
     var score = 0
     
     // ボスを倒すために出すレーザーの回数。
     var bossKillNumber = 5
-    
     
     //Timerクラスを使うためのプロパティを作成。
     var getTimer: Timer!
@@ -42,16 +59,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // 爆発音。
     let explosionSound = SKAction.playSoundFileNamed("get_sweets.mp3", waitForCompletion: false)
-    
-    
-    //衝突判定で使うビットを構造体で作る。
-    struct PhysicsCategories {
-        static let none: UInt32 = 0
-        static let player: UInt32 = 0x1 << 1 //1
-        static let laser: UInt32 = 0x1 << 2 //2
-        static let enemy: UInt32 = 0x1 << 3 //4
-        static let boss: UInt32 = 0x1 << 4 //8
-    }
 
    
     // ゲーム開始時に呼び出される部分。
@@ -87,6 +94,53 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.horizontalAlignmentMode = .left
         scoreLabel.text = String(score)
         addChild(scoreLabel)
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        for child in children {
+            if child.frame.maxX < 0 {
+                if !frame.intersects(child.frame) {
+                    child.removeFromParent()
+                }
+            }
+        }
+        
+        let activeEnemies = children.compactMap { $0 as? EnemyNode }
+        
+        if activeEnemies.isEmpty {
+            createWave()
+        }
+    }
+    
+    func createWave() {
+        guard isPlayerAlive else { return }
+        
+        if waveNumber == waves.count {
+            levelNumber += 1
+            waveNumber = 0
+        }
+        
+        let currentWave = waves[waveNumber]
+        waveNumber += 1
+        
+        let maxEnemyType = min(enemyTypes.count, levelNumber + 1)
+        let enemyType = Int.random(in: 0..<maxEnemyType)
+        
+        let enemyOffsetX: CGFloat = 100
+        let enemyStartX = 600
+        
+        if currentWave.enemies.isEmpty {
+            for (index, position) in positions.shuffled().enumerated() {
+                let enemy = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: position), xOffset: enemyOffsetX * CGFloat(index * 3), moveStraight: true)
+                addChild(enemy)
+            }
+        } else {
+            for enemy in currentWave.enemies {
+                let node = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: positions[enemy.position]), xOffset: enemyOffsetX * enemy.xOffset, moveStraight: enemy.moveStraight)
+                addChild(node)
+            }
+        }
+        
     }
     
     func killEnemy() {
@@ -181,13 +235,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         laser.name = "laser"
         
         //ポジションをplayerのすぐ上にする。
-        laser.position = CGPoint(x: player.position.x, y: player.position.y + player.size.height * 0.8)
+        laser.position = CGPoint(x: player.position.x + player.frame.width * 0.8, y: player.position.y)
         
         //GameSceneに追加する。
         addChild(laser)
         
         // 1秒間隔でlaserの高さ分Y軸方向に移動する。
-        let moveLaser = SKAction.moveTo(y: self.size.height + laser.size.height, duration: 1)
+        let moveLaser = SKAction.moveTo(x: self.size.width + laser.size.width, duration: 1)
         
         //GameSceneから削除。
         let moveReset = SKAction.removeFromParent()
@@ -219,20 +273,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // 衝突したことにより発生する処理を行いたいとき。
         player.physicsBody!.contactTestBitMask = PhysicsCategories.enemy
         
-        player.setScale(0.2)
+        player.setScale(0.1)
         
         player.zPosition = 10
         //名前をつける。
         player.name = "player"
         //最初の出現位置を決める。
-        player.position = CGPoint(x: frame.minX + 55, y: UIScreen.main.bounds.height * 0.08)
+        player.position = CGPoint(x: frame.minX + 50, y: UIScreen.main.bounds.height * 0.5)
         
         //GameSceneに追加する。
         addChild(player)
     }
     
     func createBossEnemy() {
-        let bossTexture = SKTexture(imageNamed: "devil")
+        let bossTexture = SKTexture(imageNamed: "perocan")
         
         boss = SKSpriteNode(texture: bossTexture)
         
@@ -244,22 +298,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         boss.physicsBody!.contactTestBitMask = PhysicsCategories.laser
         
-        boss.setScale(0.2)
+        boss.setScale(0.4)
         
         boss.zPosition = 10
         
         boss.name = "enemyBoss"
-
-        boss.position = CGPoint(x: frame.minX + 55, y: UIScreen.main.bounds.height)
         
         addChild(boss)
         
-        let moveBossPath = UIBezierPath()
-        moveBossPath.move(to: .zero)
-        moveBossPath.addCurve(to: CGPoint(x: frame.maxX - boss.size.width, y: 0),
-                              controlPoint1: CGPoint(x: frame.minX + 100, y: UIScreen.main.bounds.height * 0.1), controlPoint2: CGPoint(x: frame.minX + 200, y: UIScreen.main.bounds.height * 0.3))
+//        let moveBossPath = UIBezierPath()
+//        moveBossPath.move(to: .zero)
+//        moveBossPath.addCurve(to: CGPoint(x: frame.maxX - boss.size.width, y: 0),
+//                              controlPoint1: CGPoint(x: frame.minX + 100, y: UIScreen.main.bounds.height * 0.5), controlPoint2: CGPoint(x: frame.minX + 200, y: UIScreen.main.bounds.height * 0.3))
+//
+        // make the curved line
+        let line2 = UIBezierPath()
+        line2.move(to: CGPoint(x:75, y:frame.size.height))
+        line2.addCurve(to: CGPoint(x:187.5, y:100), controlPoint1: CGPoint(x:75, y:40), controlPoint2: CGPoint(x:100, y:100))
+        line2.addCurve(to: CGPoint(x:300, y:25), controlPoint1: CGPoint(x:270, y:100), controlPoint2: CGPoint(x:300, y:40))
+        line2.miterLimit = 4
+        line2.lineCapStyle = .round
         
-        let movement = SKAction.follow(moveBossPath.cgPath, asOffset: true, orientToPath: true, speed: 10)
+        let movement = SKAction.follow(line2.cgPath, asOffset: true, orientToPath: true, duration: 5)
         
         let moveReset = SKAction.removeFromParent()
         
@@ -287,7 +347,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             touchLocation = touch.location(in: self)
             player.position.x = touchLocation.x
-//            player.position.y = touchLocation.y
+            player.position.y = touchLocation.y
         }
     }
     
