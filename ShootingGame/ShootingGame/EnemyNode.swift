@@ -36,15 +36,17 @@ class EnemyNode: SKSpriteNode {
     
     func configureMovement(_ moveStraight: Bool) {
         let path = UIBezierPath()
-        path.move(to: .zero)
+//        path.move(to: .zero)
+        path.move(to: CGPoint(x:0, y:100))
+        path.addCurve(to: CGPoint(x:187.5, y:100), controlPoint1: CGPoint(x:75, y:40), controlPoint2: CGPoint(x:100, y:100))
         
-        if moveStraight {
-            path.addLine(to: CGPoint(x: -10000, y: 0))
-        }else {
-            path.addCurve(to: CGPoint(x: -3500, y: 0), controlPoint1: CGPoint(x: 0, y: -position.y * 4), controlPoint2: CGPoint(x: -1000, y: -position.y))
-        }
+//        if moveStraight {
+//            path.addLine(to: CGPoint(x: 300, y: 0))
+//        }else {
+//            path.addCurve(to: CGPoint(x: -500, y: 0), controlPoint1: CGPoint(x: 0, y: position.y), controlPoint2: CGPoint(x: -100, y: position.y * 0.5))
+//        }
         
-        let movement = SKAction.follow(path.cgPath, asOffset: true, orientToPath: true, speed: type.speed)
+        let movement = SKAction.follow(path.cgPath, asOffset: true, orientToPath: true, duration: 5)
         
         let moveReset = SKAction.removeFromParent()
         

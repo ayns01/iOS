@@ -37,7 +37,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var levelNumber = 0
     var waveNumber = 0
     
-    let positions = Array(stride(from: 0, through: 360, by: 40))
+    // 0 40 80 120 160 200 240 280 320 360
+    let positions = Array(stride(from: 0, through: 240, by: 20))
     
     //スコア。
     let scoreLabel = SKLabelNode()
@@ -126,8 +127,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let maxEnemyType = min(enemyTypes.count, levelNumber + 1)
         let enemyType = Int.random(in: 0..<maxEnemyType)
         
-        let enemyOffsetX: CGFloat = 100
-        let enemyStartX = 600
+        let enemyOffsetX: CGFloat = 10
+        let enemyStartX = 350
         
         if currentWave.enemies.isEmpty {
             for (index, position) in positions.shuffled().enumerated() {
