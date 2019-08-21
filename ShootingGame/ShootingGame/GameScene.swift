@@ -66,7 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         // ゲームに重力シュミレートを追加する
-        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
         
         // 物理衝突があったことを通知するプロトコル
         physicsWorld.contactDelegate = self
@@ -95,53 +95,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.horizontalAlignmentMode = .left
         scoreLabel.text = String(score)
         addChild(scoreLabel)
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        for child in children {
-            if child.frame.maxX < 0 {
-                if !frame.intersects(child.frame) {
-                    child.removeFromParent()
-                }
-            }
-        }
-        
-        let activeEnemies = children.compactMap { $0 as? EnemyNode }
-        
-        if activeEnemies.isEmpty {
-            createWave()
-        }
-    }
-    
-    func createWave() {
-        guard isPlayerAlive else { return }
-        
-        if waveNumber == waves.count {
-            levelNumber += 1
-            waveNumber = 0
-        }
-        
-        let currentWave = waves[waveNumber]
-        waveNumber += 1
-        
-        let maxEnemyType = min(enemyTypes.count, levelNumber + 1)
-        let enemyType = Int.random(in: 0..<maxEnemyType)
-        
-        let enemyOffsetX: CGFloat = 10
-        let enemyStartX = 350
-        
-        if currentWave.enemies.isEmpty {
-            for (index, position) in positions.shuffled().enumerated() {
-                let enemy = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: position), xOffset: enemyOffsetX * CGFloat(index * 3), moveStraight: true)
-                addChild(enemy)
-            }
-        } else {
-            for enemy in currentWave.enemies {
-                let node = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: positions[enemy.position]), xOffset: enemyOffsetX * enemy.xOffset, moveStraight: enemy.moveStraight)
-                addChild(node)
-            }
-        }
-        
     }
     
     func killEnemy() {
