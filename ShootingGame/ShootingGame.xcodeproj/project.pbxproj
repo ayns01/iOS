@@ -17,7 +17,6 @@
 		B12B9CA422F96CBA0041DCBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CA222F96CBA0041DCBE /* LaunchScreen.storyboard */; };
 		B12B9CAF22F96CBA0041DCBE /* ShootingGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12B9CAE22F96CBA0041DCBE /* ShootingGameTests.swift */; };
 		B12B9CBA22F96CBA0041DCBE /* ShootingGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12B9CB922F96CBA0041DCBE /* ShootingGameUITests.swift */; };
-		B12B9CC822F979B30041DCBE /* Starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CC722F979B30041DCBE /* Starfield.sks */; };
 		B12B9CE622FD49980041DCBE /* music_funky_walk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CE522FD49980041DCBE /* music_funky_walk.mp3 */; };
 		B12B9CE822FE12AA0041DCBE /* get_sweets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CE722FE12AA0041DCBE /* get_sweets.mp3 */; };
 		B12B9CEA22FE16000041DCBE /* laser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B12B9CE922FE16000041DCBE /* laser.mp3 */; };
@@ -69,7 +68,6 @@
 		B12B9CB522F96CBA0041DCBE /* ShootingGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShootingGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12B9CB922F96CBA0041DCBE /* ShootingGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootingGameUITests.swift; sourceTree = "<group>"; };
 		B12B9CBB22F96CBA0041DCBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B12B9CC722F979B30041DCBE /* Starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Starfield.sks; sourceTree = "<group>"; };
 		B12B9CE522FD49980041DCBE /* music_funky_walk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_funky_walk.mp3; sourceTree = "<group>"; };
 		B12B9CE722FE12AA0041DCBE /* get_sweets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = get_sweets.mp3; sourceTree = "<group>"; };
 		B12B9CE922FE16000041DCBE /* laser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laser.mp3; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 				B12B9C9522F96CB80041DCBE /* GameScene.sks */,
 				B12B9CF523012BFE0041DCBE /* MenuScene.sks */,
 				B12B9C9722F96CB80041DCBE /* Actions.sks */,
-				B12B9CC722F979B30041DCBE /* Starfield.sks */,
 				B12B9C9D22F96CB80041DCBE /* Main.storyboard */,
 				B12B9CA022F96CBA0041DCBE /* Assets.xcassets */,
 				B12B9CED22FE35360041DCBE /* ExplosionEffect.sks */,
@@ -288,7 +285,6 @@
 			files = (
 				B12B9CF8230216860041DCBE /* ExplosionBossEffect.sks in Resources */,
 				B12B9CE622FD49980041DCBE /* music_funky_walk.mp3 in Resources */,
-				B12B9CC822F979B30041DCBE /* Starfield.sks in Resources */,
 				B12B9CF022FE35360041DCBE /* Assets.xcassets in Resources */,
 				B12B9CEF22FE35360041DCBE /* ExplosionEffect.sks in Resources */,
 				B12B9CEA22FE16000041DCBE /* laser.mp3 in Resources */,

@@ -13,19 +13,19 @@ class MenuScene: SKScene {
     var newGameButtonNode: SKSpriteNode!
     
     override func didMove(to view: SKView) {
-        createStarDust()
+//        createStarDust()
         
         newGameButtonNode = self.childNode(withName: "newGameButton") as? SKSpriteNode
     }
     
-    func createStarDust() {
-        if let particles = SKEmitterNode(fileNamed: "Starfield") {
-            particles.position = CGPoint(x: frame.maxX / 2, y: frame.maxY)
-            particles.advanceSimulationTime(60)
-            particles.zPosition = 0
-            addChild(particles)
-        }
-    }
+//    func createStarDust() {
+//        if let particles = SKEmitterNode(fileNamed: "Starfield") {
+//            particles.position = CGPoint(x: frame.maxX / 2, y: frame.maxY)
+//            particles.advanceSimulationTime(60)
+//            particles.zPosition = 0
+//            addChild(particles)
+//        }
+//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
